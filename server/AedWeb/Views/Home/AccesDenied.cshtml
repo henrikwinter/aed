@@ -1,0 +1,14 @@
+﻿@using Dextra.Helpers
+@{
+    ViewBag.FormId = "Fid_HomeAccesDenied";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    @Html.ServerSideInclude("~/Views/Home/AccesDenied.js")
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+<h1>Acces denied</h1>

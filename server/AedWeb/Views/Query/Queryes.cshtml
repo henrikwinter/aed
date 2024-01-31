@@ -1,0 +1,167 @@
+﻿@using Dextra.Helpers
+@model Xapp.Models.QueryModel
+@{
+    ViewBag.FormId = "Fid_QueryQueryes";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    @Html.ServerSideInclude("~/Views/Query/Queryes.js")
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId)
+}
+
+@helper Field(string idname, string value, string ti)
+{
+    <label for="@idname" class="control-label">@Html.Lang(idname, (string)ViewBag.FormId)</label>
+    <input type="text" name="@idname" id="@idname" value="@value" class="form-control" tabindex="@ti" />
+}
+
+
+<div class="d-flex flex-row p-2">
+    <div id="QuerySelectMenu"></div>
+</div>
+<div class="d-flex flex-row p-2">
+    <div class="col-md-12" id="tabs">
+        <ul>
+            <li><a href="#fragment-1">Adatsor</a></li>
+            <li><a href="#fragment-2">Diagram</a></li>
+            <li><a href="#fragment-3">Diagram 1</a></li>
+        </ul>
+        <div id="fragment-1">
+            <!-- 1. fül -->
+            <div class="card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                    <div id="QeryTable"></div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-secondary" id="excelExport"><span class="glyphicon glyphicon-export"></span> @L("TOEXEL")</button>
+                    <button type="button" class="btn btn-secondary" id="csvExport">
+                        <span class="glyphicon glyphicon-export"></span> @L("TOCSV")
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="htmlExport">
+                        <span class="glyphicon glyphicon-export"></span> @L("TOHTML")
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="pdfExport">
+                        <span class="glyphicon glyphicon-export"></span> @L("TOPDF")
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="fragment-2">
+            <!-- 2. fül -->
+            <div class="card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                    <p>
+                        <div id="chartContainer" style="width:100%; height:500px;">
+                        </div>
+                    </p>
+                    <p>
+                        <div id='selectorContainer' style="width:100%;">
+                        </div>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-default btn-xs" id="print"><span class="glyphicon glyphicon-print"></span> @Html.Lang("BTN_PRINT")</button>
+                    <button type="button" class="btn btn-default btn-xs" id="jpegButton"><span class="glyphicon glyphicon-floppy-save"></span> @L("SAVEASJPEG")</button>
+                    <button type="button" class="btn btn-default btn-xs" id="pngButton"><span class="glyphicon glyphicon-floppy-save"></span> @L("SAVEASPNG")</button>
+                    <button type="button" class="btn btn-default btn-xs" id="pdfButton"><span class="glyphicon glyphicon-floppy-save"></span> @L("SAVEASPDF")</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="fragment-3">
+            <!-- 3. fül -->
+            <div class="card">
+                <div class="card-header" ">
+                </div>
+                <div class="card-body">
+                    <div id='AltchartContainer' style="width:100%; height:500px;">
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-default btn-xs" id="Altprint"><span class="glyphicon glyphicon-print"></span> @Html.Lang("BTN_PRINT")</button>
+                    <button type="button" class="btn btn-default btn-xs" id="AltjpegButton"><span class="glyphicon glyphicon-floppy-save"></span> @L("SAVEASJPEG")</button>
+                    <button type="button" class="btn btn-default btn-xs" id="AltpngButton"><span class="glyphicon glyphicon-floppy-save"></span> @L("SAVEASPNG")</button>
+                    <button type="button" class="btn btn-default btn-xs" id="AltpdfButton"><span class="glyphicon glyphicon-floppy-save"></span> @L("SAVEASPDF")</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div id="QueryModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <h4 class="modal-title">Query<small id="DialogeOrgId"></small></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id='jqxExpander'>
+                    <div>Szervezet választás</div>
+                    <div>
+                        <div class="col-md-12">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">@L("Kiválaszthatók")</div>
+                                <div class="panel-body">
+                                    <div id="Divided_UserFromHupaOrggroup_List">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">@L("Kiválasztottak")</div>
+                                <div class="panel-body">
+                                    <div id="Assigned_UserToHupaOrggroup_List">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <form id="Xmyform">
+                    <div id="Qxform" class="form-horizontal" style="background-color:#f7edad;padding:5px;margin:5px;">
+                    </div>
+                    <input type="text" id="SelectedOrgs" name="SelectedOrgs" value="" hidden="hidden" />
+                    <input type="text" id="SelectedOrg" name="SelectedOrg" value="" hidden="hidden" />
+
+                    <script type="text/javascript">
+                    var ChartI = null;
+                    function AddChartProp(objtarget, pname, val) {
+                        Object.defineProperty(objtarget, pname, {
+                            value: val,
+                            writable: true,
+                            enumerable: true,
+                            configurable: true
+                        });
+                    }
+                    </script>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="sendQuery" type="button" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-question-sign">
+                    </span> @Html.Lang("BTN_QUERY")
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,3 @@
+﻿
+$("#IdBodyStart").hide();
+$("#IdBody").show();

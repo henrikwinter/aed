@@ -1,0 +1,53 @@
+﻿@using Dextra.Helpers
+@model Xapp.Models.FlowViewModel
+@{
+    ViewBag.FormId = "Fid_Aed";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    var Appselector= '@ViewBag.Appselector';
+    @Html.ServerSideInclude("~/Views/Aed/Help.js")
+    LangDictionary = $.extend(LangDictionary, @Html.GetLangdictionaryToClient("Fid_AedAed"));
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+<style type="text/css">
+       .photo    {
+            width: 600px;
+            height: 450px;
+            background-color: #000;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+</style>
+<div class="row">
+    <div class="col-6">
+        <div id="photoGallery">
+            <div><div class="photo" style="background-image:url(@Url.Content("~/Content/images/aed/aed-1.png"))"></div></div>
+            <div><div class="photo" style="background-image:url(@Url.Content("~/Content/images/aed/aed-1a.png"))"></div></div>
+            <div><div class="photo" style="background-image:url(@Url.Content("~/Content/images/aed/aed-1b.png"))"></div></div>
+            <div><div class="photo" style="background-image:url(@Url.Content("~/Content/images/aed/aed-1c.png"))"></div></div>
+            <div><div class="photo" style="background-image:url(@Url.Content("~/Content/images/aed/aed-1d.png"))"></div></div>
+            <div><div class="photo" style="background-image:url(@Url.Content("~/Content/images/aed/aed-1e.png"))"></div></div>
+        </div>
+
+
+        <div style='margin-top: 20px;'>
+            <br />
+            <div>
+                <input type="button" value="Start Slideshow" id="StartBtn" />
+                <input type="button" value="Stop Slideshow" id="StopBtn" />
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="jumbotron"  style="background-color:transparent;">
+            <h4 id="HlpHead">Bootstrap Tutorial</h4>
+            <p id="HlpTxt">Bootstrap is the most popular HTML, CSS...</p>
+        </div>
+    </div>
+
+</div>

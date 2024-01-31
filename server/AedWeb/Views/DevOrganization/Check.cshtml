@@ -1,0 +1,51 @@
+﻿@using Dextra.Helpers
+@using Xapp.FlowDatas
+@{
+    ViewBag.FormId = "Fid_DevOrganizationCheck";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    WorkData.model_CurrentFlowstep = @Html.Raw(Json.Encode(@Model.FlowModel.CurrentFlowstep));
+    WorkData.model_ClientPart = @Html.Raw(Json.Encode(@Model.ViewModel.Org.ClientPart));
+    WorkData.ClientPartName='Org';
+    @Html.ServerSideInclude("~/Views/DevOrganization/Check.js")
+    LangDictionary = $.extend(LangDictionary, @Html.GetLangdictionaryToClient("Fid_DevOrganizationCheck"));
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+
+@Html.Partial("basepart/_FlowManPartial")
+
+<style type="text/css">
+    .tales {
+        width: 100%;
+    }
+
+    .carousel-inner {
+        width: 100%;
+        max-height: 500px !important;
+    }
+
+    .gray {
+color: black\9;
+background-color: gray\9;
+}
+.gray:not(.jqx-grid-cell-selected), .jqx-widget .gray:not(.jqx-grid-cell-hover) {
+color: black;
+background-color: gray !important;
+}
+
+
+</style>
+<div class="row">
+    <div class="col-md-6"><div id="ActivatteDate"></div></div>
+    <div class="col-md-6"><button id="btnActivate" type="button" class="btn btn-outline-danger btn-block">-</button></div>
+</div>
+
+<div class="row">
+    <div id="divGrid_Status" ></div>
+
+</div>

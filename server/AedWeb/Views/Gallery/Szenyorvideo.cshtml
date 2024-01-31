@@ -1,0 +1,164 @@
+﻿@using Dextra.Helpers
+@{
+    ViewBag.FormId = "Fid_GallerySzenyorvideo";
+    ViewBag.Title = "Gallery";
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    var color='@Model.GalleryColor';
+    var folder='@Model.GalleryName';
+    @Html.ServerSideInclude("~/Views/Gallery/Szenyorvideo.js")
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+<style>
+    .not-active {
+        pointer-events: none;
+        cursor: default;
+    }
+
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+    .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+
+
+#MyPils .nav-link {
+    color: white;
+    width:200px;
+    margin:5px;
+    background-color: #739f78; /* add background-color to active links */
+}
+</style>
+
+<div class="row">
+    <div class="col-12" id="MyPils">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">@L("Compactview")</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">@L("Thumbview")</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">@L("Help")</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <blockquote class="blockquote text-center" style="color:black;">
+                    <p class="mb-0">Kattintson a megtekintendő képre a videó lejátszásához!</p>
+                    <p class="blockquote-footer">A megnyitott videóablakban a kurzort az alsó részre húzva nagyithat vagy előre hátra léphet a videóban. <cite title="Source Title"></cite></p>
+                </blockquote>
+                <div class="row">
+
+
+                    @foreach (var item in Model.Galeryelemets)
+                    {
+
+                        <div class="col-4" style="padding-bottom:5px;">
+                            <!--Modal: Name-->
+                            <div class="modal fade" id="modal@(@item.Filenameo)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+
+                                    <!--Content-->
+                                    <div class="modal-content">
+
+                                        <!--Body-->
+                                        <div class="modal-body mb-0 p-0">
+
+
+                                            <div class="embed-responsive embed-responsive-4by3">
+                                                @*<div class="embed-responsive embed-responsive-16by9">*@
+
+                                                <video id="vmodal@(@item.Filenameo)" width="320" height="240" controls>
+
+                                                    <source src="~/@(Model.GalleryPathView+@item.Filename)" type="video/mp4">
+
+                                                </video>
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <!--Footer-->
+                                        <div class="modal-footer justify-content-center">
+                                            <span class="mr-4">@item.Description</span>
+
+                                            <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+
+                                        </div>
+
+                                    </div>
+                                    <!--/.Content-->
+
+                                </div>
+                            </div>
+                            <!--Modal: Name-->
+
+                            <a><img class="z-depth-1" style="border:1px solid black;width:100%;padding:0px;" src="~/@(Model.GalleryPathView+"th/"+item.ThumbnailFielname)" alt="video" data-toggle="modal" data-target="#modal@(@item.Filenameo)"></a>
+
+                        </div>
+
+                    }
+                </div>
+
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <div id="gallery" style="display:none;">
+                    @foreach (var item in Model.Galeryelemets)
+                    {
+                        <div data-type="html5video"
+                             data-thumb="../@(Model.GalleryPathView+"th/"+@item.Filenameo+".jpg")"
+                             data-image="../@(Model.GalleryPathView+"th/"+@item.Filenameo+".jpg")"
+                             data-videoogv="../@(Model.GalleryPathView+@item.Filenameo+".ogv")"
+                             data-videowebm="../@(Model.GalleryPathView+@item.Filenameo+".webm")"
+                             data-videomp4="../@(Model.GalleryPathView+@item.Filenameo+".mp4")"
+                             data-title="@item.Title"
+                             data-description="@item.Description">
+                        </div>
+                    }
+                </div>
+
+
+
+
+            </div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                <div class="card">
+                    <div class="card-header">
+                        Szenyorvideó
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Infó:</h5>
+                        <p class="card-text">Az oktató videók mind két nézetben azonosak, használja az Ön számára alkalmasabbat.</p>
+
+                    </div>
+                </div>
+
+
+                
+            </div>
+        </div>
+
+    </div>
+</div>
+

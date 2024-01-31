@@ -1,0 +1,15 @@
+﻿@using Dextra.Helpers
+@{
+    ViewBag.FormId = "Fid_HomeSessionExpire";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    @Html.ServerSideInclude("~/Views/Home/SessionExpire.js")
+}
+
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+<h1>SessionExpire</h1>

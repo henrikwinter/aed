@@ -1,0 +1,142 @@
+﻿@using Dextra.Helpers
+@using Xapp.FlowDatas
+@{
+    ViewBag.FormId = "Fid_PersonsContract";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    WorkData.model_CurrentFlowstep = @Html.Raw(Json.Encode(@Model.FlowModel.CurrentFlowstep))
+    WorkData.model_ClientPart = @Html.Raw(Json.Encode(@Model.ViewModel.Org.ClientPart))
+    WorkData.model_PersonClientPart = @Html.Raw(Json.Encode(@Model.ViewModel.Person.ClientPart))
+    @Html.ServerSideInclude("~/Views/Persons/Contract.js")
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+
+@Html.Partial("basepart/_FlowManPartial")
+
+<style type="text/css">
+    .tales {
+        width: 100%;
+    }
+
+    .carousel-inner {
+        width: 100%;
+        max-height: 500px !important;
+    }
+
+    .gray {
+        color: black\9;
+        background-color: gray\9;
+    }
+
+        .gray:not(.jqx-grid-cell-selected), .jqx-widget .gray:not(.jqx-grid-cell-hover) {
+            color: black;
+            background-color: gray !important;
+        }
+</style>
+
+
+<a href="#collapseExample" data-toggle="collapse" style="margin-left:15px;"><i class="glyphicon glyphicon-list" aria-hidden="true"></i></a>
+
+<div id="collapseExample" class="row collapse">
+    <div class="col-6" style="height:200px;overflow-y:scroll;">
+        <form id="frmView_Organization_Xform">
+            <div id="divXformHtmlView_Organization" class="form-horizontal"></div>
+        </form>
+
+    </div>
+    <div class="col-6" style="height:200px;overflow:hidden;">
+        <form id="frmView_Persons_Xform">
+            <div id="divXformHtmlView_Persons" class="form-horizontal"></div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="btn-group btn-group-xs special" role="group" aria-label="...">
+            <div id="cmbXformRootSelect_Agreement"></div>
+            <button id="btnSaveXform_Agreement" state="sensdisable" type="button" class="btn btn-outline-info btn-xs">btnSaveXform_Agreement</button>
+            <button id="btnGetDocument_Agreement" state="sensdisable" type="button" class="btn btn-outline-info btn-xs">btnGetDocument_Agreement</button>
+        </div>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-12"  style="height:350px;overflow-y:scroll;margin:10px;">
+        <form id="frmXform_Agreement">
+
+        </form>
+    </div>
+
+</div>
+<div class="row">
+
+    <div id="divColapseVw_Agreementpropertytable" state="true" class="col-12">
+        <div class="col-10">
+            <div class="btn-group btn-group-xs special" role="group" aria-label="...">
+                <div id="cmbXformRootSelect_Vw_AgreementpropertyMenu"></div>
+
+                <button id="btnEditXform_Vw_Agreementproperty" type="button" state="sensdisable" class="btn btn-outline-info btn-xs"><i class="glyphicon glyphicon glyphicon-plus pull-left"></i>btnEditXform_Vw_Agreementproperty</button>
+                <button id="btnDeleteXform_Vw_Agreementproperty" type="button" state="sensdisable" class="btn btn-outline-info btn-xs"><i class="glyphicon glyphicon glyphicon-plus pull-left"></i>btnDeleteXform_Vw_Agreementproperty</button>
+            </div>
+            <div id="divGrid_Vw_Agreementproperty"></div>
+        </div>
+    </div>
+
+</div>
+
+<div id="divXformHtmlCommonView" style="display:none;"></div>
+
+
+<div id="divCreateOrEditModal_Vw_Agreementproperty" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <span class="modal-title">Vw_Agreementproperty Modal</span>
+                <span id="SelectedVw_AgreementpropertyTitle" style="width:70%;text-align:center;">-</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-header">
+                Valami:<div id="cmbXformRootSelect_Vw_Agreementproperty"></div>
+            </div>
+            <div class="modal-body">
+                <form id="frmXform_Vw_Agreementproperty">
+                    @* <div id="divXformHtml_Vw_Agreementproperty" class="form-horizontal xblck0"></div>*@
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input id="chkInsertPosition" name="chkInsertPosition" class="form-check-input" type="checkbox"> InsertPosition
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
+                <button id="btnSaveXform_Vw_Agreementproperty" state="sensdisable" type="button" class="btn btn-primary btn-xs">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dlgAreYouSoure" aria-hidden="true" id="dlgAreYouSoure">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">Confirm</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" id="dlgAreYouSoureYes">Yes</button>
+                <button type="button" class="btn btn-default" id="dlgAreYouSoureCloseRecord">CloseRecord</button>
+                <button type="button" class="btn btn-primary" id="dlgAreYouSoureNo">No</button>
+            </div>
+        </div>
+    </div>
+</div>

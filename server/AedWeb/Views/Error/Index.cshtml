@@ -1,0 +1,39 @@
+﻿@using Dextra.Helpers
+@model Xapp.Models.ErrorModel
+@{
+    ViewBag.Title = "Error";
+    ViewBag.FormId = "Fid_ErrorIndex";
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    $('.container').css('opacity', '0.5');
+
+    $("#IdBodyStart").hide();
+    $("#IdBody").show();
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+
+
+<div class="jumbotron">
+    <h1 class="display-4">@Model.ErrorTitle!</h1>
+    <h1 class="display-4">@Model.ExceptionDetail!</h1>
+    <p class="lead">Hiba történt a rendszerben, kérjük értesítse a rendszer gazdát!.</p>
+    <hr class="my-4">
+    <p>
+        @if (Model.ExceptionDetail != null)
+            {
+            @Model.ExceptionDetail.Message
+            @Model.ExceptionDetail.InnerException
+        }
+        else
+        {
+            @("No details...")
+        }
+    </p>
+    <p class="lead">
+        @Html.ActionLink("Vissza", "Index", "Home")
+    </p>
+</div>

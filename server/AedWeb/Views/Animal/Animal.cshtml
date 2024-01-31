@@ -1,0 +1,136 @@
+﻿@using Dextra.Helpers
+@model Xapp.Models.FlowViewModel
+@{
+    ViewBag.FormId = "Fid_AnimalAnimal";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    var Appselector= '@ViewBag.Appselector';
+    @Html.ServerSideInclude("~/Views/Animal/Animal.js")
+    LangDictionary = $.extend(LangDictionary, @Html.GetLangdictionaryToClient("Fid_AnimalAnimal"));
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+<style type="text/css">
+</style>
+<div class="d-flex">
+    <div class="mr-auto p-2" style=""><strong>@L("Selected"):&nbsp;</strong><span id="divSelectedTxt"> - </span> </div>
+    <div class="p-2">  <span class="badge badge-info">@L("AnimalModule")</span>               </div>
+    <div class="p-2"><a href="#" data-toggle="popover" title="@L("AnimalHelp1")" data-content="@L("AnimalHelpTxt")"><i class="glyphicon glyphicon-info-sign"></i>&nbsp;@L("Help")</a> </div>
+</div>
+
+
+
+
+
+
+
+
+<div id="divColapseSearchAnimals" state="true" class="row">
+
+    <div class="col-12">
+        <div class="btn-group btn-group-xs special" role="group" aria-label="..." style="padding:5px;">
+            <div><span class="text-primary bg-light">@L("Searchcondition"):&nbsp;</span></div>
+            <div id="cmbXformRootSelect_SearchAnimals"></div>
+            <div>&nbsp;<span class="text-primary bg-light">@L("Timecondition"):&nbsp;</span></div>
+            <div id="divAnimalDateList"></div>
+            <button id="btnSaveXform_SearchAnimals" type="button" class="btn btn-outline-primary btn-xs">@L("Search")</button>
+            <button id="btnNewXform_Animals" type="button" class="btn btn-outline-primary btn-xs">@L("New")</button>
+            <button id="btnEditXform_Animals" type="button" class="btn btn-outline-primary btn-xs">@L("Edit")</button>
+            <button id="btnDeleteXform_Animals" type="button" class="btn btn-outline-primary btn-xs">@L("Delete")</button>
+            <button id="btnPropertyes_Animal" type="button" class="btn btn-outline-primary btn-xs">@L("Propertyes")</button>
+            @*<a href="@Url.Action("Propertyes", "Animal",new { id_animal = 1  })" class="btn btn-outline-primary btn-xs">Propertyes</a>*@
+            
+        </div>
+
+
+        <form id="frmXform_SearchAnimals" class="form-horizontal xblck0">
+            <div id="divXformHtml_SearchAnimals"></div>
+        </form>
+    </div>
+</div>
+
+
+
+<div id="divColapseAnimalsGrid" state="true" class="">
+    <div id="divGrid_Animals"></div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dlgAreYouSoure" aria-hidden="true" id="dlgAreYouSoure">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">@L("Confirm")</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" id="dlgAreYouSoureYes">@L("Yes")</button>
+                <button type="button" class="btn btn-default" id="dlgAreYouSoureCloseRecord">@L("CloseRecord")</button>
+                <button type="button" class="btn btn-primary" id="dlgAreYouSoureNo">@L("No")</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="divCreateOrEditModal_Animals" tabindex="-1" role="dialog" aria-labelledby="divCreateOrEditModal_Animals" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <span id="FindAnimalsModalTitle" class="modal-title">@L("FindAnimalsModal")</span>
+                <span id="SelectedAnimalsTitle" style="width:70%;text-align:center;"></span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="ModalLoaderStart"></div>
+                <div id="divColapseNewAnimals" state="true" class="collapse">
+
+                    <div class="btn-group btn-group-xs special" role="group" aria-label="...">
+                        <div><span class="text-primary bg-light">@L("Select_AnimalType"):&nbsp;</span></div>
+                        <div id="cmbXformRootSelect_Animals"></div>
+                        <button id="btnSaveXform_Animals" type="button" class="btn btn-outline-primary btn-xs">@L("Save")</button>
+                        <button id="btnSwitchUpload_Animals" type="button" class="btn btn-outline-primary btn-xs">@L("SwitchUpload_Animal")</button>
+                    </div>
+
+                    <form id="frmXform_Animals">
+                        <div id="divXformHtml_Animals" class="form-horizontal xblck0"></div>
+                    </form>
+                    <a href="#" data-toggle="popover" data-placement="top" title="@L("AnimalHelp2")" data-content="@L("AnimalHelp2Txt")"><i class="glyphicon glyphicon-info-sign"></i>&nbsp;@L("Help")</a>
+                </div>
+
+                <div id="divCollapseAnimalsPicture" state="true" class="collapse">
+                    <div class="btn-group btn-group-xs special" role="group" aria-label="...">
+                        <button id="btnSwitchData_Animal" type="button" class="btn btn-outline-primary btn-xs">@L("SwitchData_Animal")</button>
+                        <button id="btnUpload" type="button" class="btn btn-outline-primary btn-xs">@L("btnUpload1")</button>
+                        <button id="cropbutton" type="button" class="btn btn-outline-primary btn-xs">@L("Crop")</button>
+                        <button id="scalebutton" type="button" class="btn btn-outline-primary btn-xs">@L("Scale")</button>
+                        <button id="rotatebutton" type="button" class="btn btn-outline-primary btn-xs">@L("Rotate")</button>
+                        <button id="hflipbutton" type="button" class="btn btn-outline-primary btn-xs">@L("H-flip")</button>
+                        <button id="vflipbutton" type="button" class="btn btn-outline-primary btn-xs">@L("V-flip")</button>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <form id="UploadForm">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inpFile">
+                                <label class="custom-file-label" for="customFile">@L("Choose file")</label>
+                            </div>
+                            <div id="views" style="min-height:200px;padding:5px;margin:5px; border:0px solid grey;"></div>
+                            <input type="text" class="form-control mr-sm-2 mb-2 mb-sm-0" id="Picturetitle" name="Picturetitle" placeholder="Picturetitle">
+                        </form>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <a href="#" data-toggle="popover" data-placement="top" title="@L("AnimalHelp3")" data-content="@L("AnimalHelp3Txt")"><i class="glyphicon glyphicon-info-sign"></i>&nbsp;@L("Help")</a>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

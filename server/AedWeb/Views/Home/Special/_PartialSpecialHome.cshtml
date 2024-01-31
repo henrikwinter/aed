@@ -1,0 +1,25 @@
+﻿@using Dextra.Helpers
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+<div class="jumbotron" style="background-color:transparent;text-align:center;">
+    @if (Request.IsAuthenticated)
+    {
+        <h1>@L("Welcome")!</h1>
+
+    }
+    else
+    {
+        <h1>@L("Please login")!</h1>
+                    <span>or</span><br />
+                    <a href="@Url.Action("Register", "Account")" class="" style="color:white;">&nbsp;@Html.Lang("Register", "Layout")</a>
+    }
+    <p>A d'Extra-Line Techikai weboldala. Mindíg a jogosultságának megfelelő lehetőségek jellenek meg!</p>
+</div>
+
+<div class="row">
+
+
+
+</div>

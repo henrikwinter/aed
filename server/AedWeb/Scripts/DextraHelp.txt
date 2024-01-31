@@ -1,0 +1,88 @@
+﻿
+// XformRoot selector menu or combo
+
+var const_TypemenuGet = 'Ajax/BuildRootSelectorMenuWithComplexType';
+var const_TypecomboGet = 'Ajax/BuildRootSelectorComboWithComplexType';
+
+
+
+$("#_Jqxmenu").DXjqxRootsMenu({
+    url: pageVariable.baseSiteURL + const_TypemenuGet, //  "Ajax/BuildRootSelectorMenuWithComplexType",  
+    filter: 'xxx',
+    param: {
+        theme: pageVariable.JqwthemeMenu,
+        showTopLevelArrows: true,
+        width: '100%'
+    },
+    ComplettCallback: function (c) {
+        try {
+
+        } catch (Error) { }
+    }
+});
+
+$('#_Jqxmenu').on('itemclick', function (event) {
+    var record = GetSelectedRootsMenurecord($(this).data(), event.args);
+	
+		record.Label	"HealthSample h"	String
+		record.id	4	Number
+		record.value	"BeefExtendProperty1"	String
+		record.RefRoots	null	Null
+		record.Table	"Animalhealtevents"	String
+		record.parentid	9	Number
+
+    
+});
+
+$("#_Animals").DXjqxRootsCombo({
+    url: pageVariable.baseSiteURL + const_TypecomboGet,     //"Ajax/BuildRootSelectorMenuWithComplexType",  
+    filter: 'xxxx',
+    param: {
+        theme: pageVariable.Jqwtheme,
+        selectedIndex: 0,
+        height: 25,
+        width: 270
+    },
+    ComplettCallback: function (c) {
+        try {
+
+        } catch (Error) { }
+    }
+});
+
+$('#Test_Animals').on('change', function (event) {
+    if (event.args) {
+        var item = event.args.item;
+
+		item.originalItem.Label	"HealthSample h"	String
+		item.originalItem.id	3	Number
+		item.originalItem.value	"BeefExtendProperty"	String
+		item.originalItem.RefRoots	null	Null
+		item.originalItem.Table	"Animalhealtevents"	String
+		item.originalItem.parentid	8	Number
+   
+    }
+});
+
+
+  <xs:complexType name="BeefExtendPropertyType">
+        <xs:annotation>
+            <xs:documentation>BeefExtendPropertyType</xs:documentation>
+            <xs:appinfo>
+                <AnimalPropType>filter</AnimalPropType>
+            </xs:appinfo>
+        </xs:annotation>
+		...
+		...
+
+
+
+  <xs:element name="BeefExtendProperty1" type="BeefExtendPropertyType">
+        <xs:annotation>
+            <xs:documentation>DocBeefExtendProperty1</xs:documentation>
+            <xs:appinfo>
+                <AnimalPropType>HealthSample</AnimalPropType>
+                <AnimalPropTypeMenu>Healt/proba1</AnimalPropTypeMenu>
+                <AnimalPropTypeExtval>Animalhealtevents</AnimalPropTypeExtval>	
+				...
+				...

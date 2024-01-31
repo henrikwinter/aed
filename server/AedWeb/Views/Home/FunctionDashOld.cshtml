@@ -1,0 +1,31 @@
+
+    @foreach (var item in Model.Startableflows)
+    {
+        <div class="d-flex flex-row justify-content-center">
+
+            @foreach (var x in item.startables)
+            {
+
+                <div class="appicons1 rounded" style="background-color:@x.Flag;">
+                    <a href="~/@x.Controller/@x.Action" class="">
+                        <img src="~/Content/icons/@x.Param" alt="...">
+                    </a>
+                    <br />
+                    <p>@L(@x.FunctioDesc)</p>
+                </div>
+            }
+            @for (int i = 0; i < 8 - item.startables.Count; i++)
+            {
+                <div class="appicons1 rounded" style="background-color:white;border:1px solid #edeaea;">
+                    <a href="#" class="">
+                        <img src="~/Content/icons/Generic.ico" alt="..." style="opacity: 0.5;">
+                    </a>
+                    <br />
+                    <p>@L("-na-")</p>
+                </div>
+            }
+
+        </div>
+    }
+
+

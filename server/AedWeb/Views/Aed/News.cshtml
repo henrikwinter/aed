@@ -1,0 +1,78 @@
+﻿@using Dextra.Helpers
+@model Xapp.Models.FlowViewModel
+@{
+    ViewBag.FormId = "Fid_Aed";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    var Appselector= '@ViewBag.Appselector';
+    @Html.ServerSideInclude("~/Views/Aed/News.js")
+    LangDictionary = $.extend(LangDictionary, @Html.GetLangdictionaryToClient("Fid_AedAed"));
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+<style type="text/css">
+</style>
+<div class="row">
+    <div class="col-4">
+        <div class="row">
+            <div class="col-12 dxlead">
+                <h3>Defibrillátor Adatbázis</h3>
+                <p class="text-justify">
+                    <img src="~/Content/images/demo/defibrillator.jpg" class="rounded" alt="Cinque Terre" width="120" style="float:left;padding:0 5px 0 0;">
+                    A filmek, mint tudjuk, nem feltétlenül fedik a valóságot, mégis vannak olyan jelenetek, amelyek valószerűtlenségébe időnként bele sem gondolunk. Elfogadjuk, hogy ezek így vannak, hiszen ritkán, vagy egyáltalán nem kerülünk olyan helyzetbe, ahol ennek valóságával szembesülnünk kellene. Mennyire áll közel ez a valósághoz?
+                </p>
+            </div>
+            <div class="col-12 dxlead">
+                <h3>Életmentő rendőrautók</h3>
+                <p class="text-justify">
+                    <img src="~/Content/images/aed/aed-5g.png" class="rounded" alt="Cinque Terre" width="120" style="float:left;padding:0 5px 0 0;">
+                    emzetközi tapasztalatok azt igazolják, hogy a közterületeken, rendőrségi egységeknél, járőrautókban elhelyezett életmentő készülékek, az utcán, közlekedés közben előforduló esetek jelentős hányadánál, az időben rendelkezésre álló eszközös beavatkozás révén, hatékony segítséget nyújtanak az emberélet megmentésében.
+                    Ugyanis a szív remegő, kaotikus működését csak az időben leadott elektromos sokk segítségével lehet a normális ütemre visszaállítani. Az időtényező igen rövid, a tünetek jelentkezésétől - eszméletvesztés, légzés és keringés leállástól - számított 3-5 percen belül megindul a létfontosságú szervek károsodása és beáll a halál.
+                    Mivel a túlélési lánc elemei közül a korai defibrillálás, vagyis az eszköz azonnali helyszínen történő biztosítása a legkritikusabb ezért a Magyar Nemzeti Szívalapítvány ezen szeretne változtatni. A "Minden perc számít" program keretében támogat minden olyan defibrillátor kihelyezést, amellyel növelni tudjuk környezetünk biztonságát és a hatékony fellépést. Reméljük, hogy az intézmények, üzletközpontok, vállalatok, közforgalmú helyek üzemeltetői megismerik és felismerik szerepük jelentősségét a hirtelen szívhalál ellen folytatott küzdelemben.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="row">
+            <div class="col-12 dxlead">
+                <h3>Hirtelen szívhalált halt Kolonics György</h3>
+                <p class="text-justify">
+                    <img src="~/Content/images/aed/aed-4a.png" class="rounded" alt="Cinque Terre" width="120" style="float:left;padding:0 5px 0 0;">
+                    Feltételezhetően hirtelen szívhalál okozta Kolonics György kétszeres olimpiai bajnok sportoló tragikus halálát 2008. július 15-én délelőtt. Az élsportoló halálát edzés közben lelte. Minden körülmény arra utal, hogy a végzetét hirtelen szívhalál okozta. Milyen tanulságokat kell levonnunk a tragikus esetből. Olvassa el a Magyar Kardiológusok Társaságával együtt kialakított álláspontunkat:
+                </p>
+            </div>
+            <div class="col-12 dxlead">
+                <h3>Teendők hirtelen szívhalál esetén</h3>
+                <p class="text-justify">
+                    <img src="~/Content/images/aed/aed-3.png" class="rounded" alt="Cinque Terre" width="120" style="float:left;padding:0 5px 0 0;">
+                    Négy percünk van arra, hogy a megálló keringést eredményesen újra tudjuk indítani. Ezután visszafordíthatatlan agyi károsodás alakul ki, Minimálisak a 10 perc után megkezdett újraélesztés esélyei. A túlélési lánc elemei a segélyhívás, az alapszintű újraélesztés, a korai defibrillálás és a mielőbbi szakellátás. Az újraélesztés részei a légutak szabaddá tétele, mellkaskompressziók és befúvásos lélegeztetés. Laikus által végzett újraélesztés esetén a mellkasi kompresszió önmagában, lélegeztetés nélkül is segíthet. Fontos tudni, hogy a fent említett kamraremegést csak arra alkalmas elektromos áramütéssel, defibrillációval tudjuk megszüntetni. Az újraélesztést a mentők megérkezéséig, vagy az egyre több nagy forgalmú helyszínen telepített automata elektromos defibrillátor (AED) alkalmazásáig kell folytatni. Így a hirtelen szívhalál eredményesen kezelhető, a beteg akár évtizedeket élhet ezt követően.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="row">
+            <div class="col-12 dxlead">
+                <h3>Javultak az újraélesztés eredményei</h3>
+                <p class="text-justify">
+                    <img src="~/Content/images/aed/aed-5a.png" class="rounded" alt="Cinque Terre" width="120" style="float:left;padding:0 5px 0 0;">
+                    Svéd kutatók Jacob Hollenberg vezetésével földolgozták 13 év újraélesztési adatait. A svédországi nyilvántartásban 1992 és 2005 között 38 646 olyan személy neve szerepelt, akiket megpróbáltak az életbe visszahozni. Ennek az erőfeszítésnek az eredményei javultak jelentősen az utóbbi időben.
+                    A hirtelen szívhalál helyszínéről - pl. lakásból, bevásárlóközpontból vagy sportpályáról - az elkezdett újraélesztés eredményeként a betegek 21,7 százalékát sikerült élve kórházba vinni és egy hónapon belül ezek 7,3 százaléka otthonába távozhatott. 1992-ben a gyógyintézetből hazabocsátottak aránya csak 4,8 százalék volt, ami statisztikailag igen jelentős javulás.
+                    Az eredmények főleg akkor voltak jók, ha a szívmegállásnak azt a formáját észlelték, amikor a ritmusos szívműködés megszűnt és a szívizomzat fibrillált, remegett. Ez a ritmuszavar defibrillátor áramütésével általában megszüntethető és ezekben az esetben az újraélesztés eredményessége az utolsó években már 22,3 százalékra növekedett.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

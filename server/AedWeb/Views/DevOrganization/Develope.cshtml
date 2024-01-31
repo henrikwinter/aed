@@ -1,0 +1,264 @@
+﻿@using Dextra.Helpers
+@using Xapp.FlowDatas
+@{
+    ViewBag.FormId = "Fid_DevOrganizationActivate";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    WorkData.model_CurrentFlowstep = @Html.Raw(Json.Encode(@Model.FlowModel.CurrentFlowstep));
+    WorkData.model_ClientPart = @Html.Raw(Json.Encode(@Model.ViewModel.Org.ClientPart));
+
+    @Html.ServerSideInclude("~/Views/DevOrganization/Develope.js")
+    LangDictionary = $.extend(LangDictionary, @Html.GetLangdictionaryToClient("Fid_DevOrganizationActivate"));
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+
+@Html.Partial("basepart/_FlowManPartial")
+
+<style type="text/css">
+    .tales {
+        width: 100%;
+    }
+
+    .carousel-inner {
+        width: 100%;
+        max-height: 500px !important;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="btn-group btn-group-xs special" role="group" aria-label="...">
+            <button id="btnTreeSearch_Organization" state="true" type="button" class="btn btn btn-outline-info btn-xs"><i class="glyphicon glyphicon-search" aria-hidden="true"></i></button>
+            <button id="btnNewXform_Organization" type="button" class="btn btn-outline-info btn-xs">btnNewXform_Organization</button>
+            <button id="btnEditXform_Organization" type="button" class="btn btn-outline-info btn-xs">btnEditXform_Organization</button>
+            <button id="btnDeleteXform_Organization" type="button" class="btn btn-outline-info btn-xs">btnDeleteXform_Organization</button>
+            <div class="btn-group" style="padding-left:5px;padding-right:5px;"><div id="div_OrganizationPreselect"><div id="Preselect_Organization"></div></div></div>
+        </div>
+    </div>
+    <div class="col-md-6" style="min-height:310px;margin-top:3px;">
+        <div id="divTreeSesrchContainer_Organization"></div>
+        <div id="divTreeContextmenu_Organization"></div>
+        <div id="divTree_Organization"></div>
+
+
+
+
+    </div>
+    <div class="col-md-6" style="min-height:310px;margin-top:3px;">
+        <div class="card border-info">
+            <div class="card-header border-info" id="frmView_Organization_XformLabel">Organization</div>
+            <div class="card-body" style="min-height:225px;">
+                <form id="frmView_Organization_Xform">
+                    <div id="divXformHtmlView_Organization" class="form-horizontal"></div>
+                </form>
+            </div>
+            <div class="card-footer border-info"></div>
+        </div>
+    </div>
+    <div class="col-md-12" style="border:0px solid grey;">
+        <a href="#divCopyStatus" data-toggle="collapse" style="margin-left:15px;"><i class="glyphicon glyphicon-list" aria-hidden="true"></i></a>
+        <a id="btnSwitchStatusMode" href="#" style="margin-left:15px;"><i class="glyphicon glyphicon-random" aria-hidden="true"></i></a>
+        <a id="btnCopyStatusToTemp" href="#" style="margin-left:15px;"><i class="glyphicon glyphicon-retweet" aria-hidden="true"></i></a>
+    </div>
+
+</div>
+
+<div id="divColapseStatustable" state="true" class="col-md-12 collapse">
+    <div class="btn-group btn-group-xs special" role="group" aria-label="...">
+        <button type="button" state="sensdisable" id="btnNewXform_Status" class="btn btn-outline-info btn-xs"><i class="glyphicon glyphicon glyphicon-plus pull-left"></i> New_Status</button>
+        <button type="button" state="sensdisable" id="btnEditXform_Status" class="btn btn-outline-info btn-xs"><i class="glyphicon glyphicon-hand-right pull-left"></i> Edit_Status</button>
+        <button type="button" state="sensdisable" id="btnDeleteXform_Status" class="btn btn-outline-info btn-xs"><i class="glyphicon glyphicon glyphicon-minus pull-left"></i> Delete_Status</button>
+
+        <button type="button" state="sensdisable" id="btnNewXform_Statusrequirements" class="btn btn-outline-info btn-xs"><i class="glyphicon glyphicon glyphicon-plus pull-left"></i> New_Requirements</button>
+        <button type="button" state="sensdisable" id="btnEditXform_Statusrequirements" class="btn btn-outline-info btn-xs"><i class="glyphicon glyphicon-hand-right pull-left"></i> Edit_Requirements</button>
+        <button type="button" state="sensdisable" id="btnDeleteXform_Statusrequirements" class="btn btn-outline-info btn-xs"><i class="glyphicon glyphicon glyphicon-minus pull-left"></i> Delete_Requirements</button>
+        <span> </span>
+        <button type="button" id="btnAttachedPersons" class="btn btn-outline-info btn-xs"><i class="glyphicon glyphicon glyphicon-minus pull-left"></i> AttachedPersons</button>
+        <button type="button" state="sensdisable" id="btnMultiplicateStatus" class="btn btn-outline-info btn-xs"><i class="glyphicon glyphicon glyphicon-minus pull-left"></i> MultiplicateStatus</button>
+    </div>
+    <div id="divGrid_Status"></div>
+
+</div>
+<div id="divColapseOrphantable" state="true" class="collapse">
+    <div id="divGrid_Orphanstatus"></div>
+</div>
+
+
+
+
+
+<div id="divCreateOrEditModal_Organization" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <span class="modal-title">Organization Modal</span>
+                <span id="SelectedOrganizationTitle" style="width:70%;text-align:center;">-</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-header">
+                Valami:<div id="cmbXformRootSelect_Organization"></div>
+            </div>
+            <div class="modal-body">
+                <form id="frmXform_Organization">
+                    <div id="divXformHtml_Organization" class="form-horizontal xblck0"></div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input id="chkInsertPosition" name="chkInsertPosition" class="form-check-input" type="checkbox"> InsertPosition
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
+                <button id="btnSaveXform_Organization" type="button" class="btn btn-primary btn-xs">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="divCreateOrEditModal_Status" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <span class="modal-title">Status Modal</span>
+                <span id="SelectedStatusTitle" style="width:70%;text-align:center;"></span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-header">
+                Valami:<div id="cmbXformRootSelect_Status"></div>
+            </div>
+            <div class="modal-body">
+                <form id="frmXform_Status">
+                    <div id="divXformHtml_Status" class="form-horizontal xblck0"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
+                <button id="btnSaveXform_Status" type="button" class="btn btn-primary btn-xs">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dlgAreYouSoure" aria-hidden="true" id="dlgAreYouSoure">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">Confirm</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" id="dlgAreYouSoureYes">Yes</button>
+                <button type="button" class="btn btn-default" id="dlgAreYouSoureCloseRecord">CloseRecord</button>
+                <button type="button" class="btn btn-primary" id="dlgAreYouSoureNo">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="divCreateOrEditModal_Statusrequirements" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <span class="modal-title">Statusrequirements Modal</span>
+                <span id="SelectedStatusrequirementsTitle" style="width:70%;text-align:center;">-</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-header">
+                Valami:<div id="cmbXformRootSelect_Statusrequirements"></div>
+            </div>
+            <div class="modal-body">
+                <form id="frmXform_Statusrequirements">
+                    <div id="divXformHtml_Statusrequirements" class="form-horizontal xblck0"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
+                <button id="btnSaveXform_Statusrequirements" type="button" state="sensdisable" class="btn btn-primary btn-xs">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="divViewModal_AttachedPersons" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <span class="modal-title">AttachedPersons</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-12">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators" id="CarusrlIndicator"></ol>
+
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner" role="listbox" id="CaruselInner">
+                            </div>
+
+                            <!-- Controls -->
+                            <a class="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carousel-example-generic" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="false"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+
+                    </div>
+                    @*<form id="frmXform_AttachedPersons">
+                            <div id="divXform_AttachedPersons" class="form-horizontal xblck0"></div>
+                        </form>*@
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dlgAreYouSoure" aria-hidden="true" id="divMultiplicatStatusModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title"></span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        Number of Copyed:
+                    </div>
+                    <div class="col-md-6">
+                        <input  type="number" id="MultipleStatusCount" value="1" min="1" max="5" step="1" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" state="sensdisable" class="btn btn-default" id="btnMultiplicatStatusOk">Copy</button>
+                <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
+            </div>
+        </div>
+    </div>
+</div>

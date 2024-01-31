@@ -1,0 +1,60 @@
+﻿@using Dextra.Helpers
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+
+<!-- GlobErrorModal -->
+<style type="text/css">
+    #ErrorsModal .modal-dialog {
+        width: 20%;
+    }
+
+    .row-fluid {
+        display: flex;
+    }
+</style>
+<div id="GlobErrorsModal" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <h4 class="modal-title">@L("Errors")</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="GlobErrorsList"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">@L("Close")</button>
+                <button id="GlobErrorsListClear" type="button" class="btn btn-info btn-xs">@L("ClearErrors")</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="div_RefRoot_Modal" class="modal fade" role="dialog">
+    <div class="modal-dialog" role="document">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <h4 class="modal-title">Refrot<small id="txt_StatusName"></small></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="refrootcontent">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn_CloseRefRootModal" type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
+                <button id="btn_SaveRefRoot" type="button" class="btn btn-info btn-xs">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

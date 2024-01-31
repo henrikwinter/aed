@@ -1,0 +1,28 @@
+﻿@using Dextra.Helpers
+@{
+    ViewBag.FormId = "Fid_DevIndex";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    @Html.ServerSideInclude("~/Views/Dev/Index.js")
+    LangDictionary = $.extend(LangDictionary, @Html.GetLangdictionaryToClient("Fid_DevIndex"));
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+<div class="row">
+    <div class="col-md-6">
+        <form id="frmProcEntity">
+            <button class="btn-default" id="btnProcEntityDesc">Generate</button>
+            <textarea id="txtEntityDesc" name="txtEntityDesc"  rows="6" class="form-control form-rounded">
+
+            </textarea>
+        </form>
+    </div>
+    <div class="col-md-6">
+
+    </div>
+</div>
+

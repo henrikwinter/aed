@@ -1,0 +1,67 @@
+﻿@using Dextra.Helpers
+@{
+    ViewBag.FormId = "Fid_GalleryIndex";
+    ViewBag.Title = "Gallery";
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    @Html.ServerSideInclude("~/Views/Gallery/Index.js")
+}
+
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+<style>
+    .not-active {
+        pointer-events: none;
+        cursor: default;
+    }
+</style>
+<div class="row">
+    @Html.ActionLink("Admin", "AdminGaleryes", "Gallery", new { galleryColor = "Video" }, new { @class = "btn btn-info" })
+    <div class="btn-group btn-group-justified " role="group" aria-label="...">
+
+        @Html.ActionLink("Black", "Galleryes", "Gallery", new { galleryColor = "Black" }, new { @class = "btn btn-info" })
+        @Html.ActionLink("Red", "Galleryes", "Gallery", new { galleryColor = "Red" }, new { @class = "btn btn-danger" })
+        @Html.ActionLink("Blue", "Galleryes", "Gallery", new { galleryColor = "Blue" }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Green", "Galleryes", "Gallery", new { galleryColor = "Green" }, new { @class = "btn btn-success" })
+        @Html.ActionLink("Yellow", "Galleryes", "Gallery", new { galleryColor = "Yellow" }, new { @class = "btn btn-warning" })
+
+        @Html.ActionLink("Videos", "Galleryes", "Gallery", new { galleryColor = "Video" }, new { @class = "btn btn-info" })
+    </div>
+
+    <div class="alert alert-info" role="alert">
+        @if (Model.gallerys.Count > 0 && Model.gallerys[0].CurUserId == "Sfhw")
+        {
+
+        }
+
+
+        @if (Model.gallerys.Count == 0)
+        { @("Ures a konyvtar") }
+        else
+        {  @( Model.gallerys[0].GalleryColor + " konyvtar")}
+    </div>
+
+
+    @foreach (var item in Model.gallerys)
+            {
+        <div class="col-md-2">
+            <figure class="figure">
+
+                <a href="@Url.Content("~/Gallery/Gallery")?color=@item.GalleryColor&folder=@item.GalleryName" class="@(item.isEmpty ? "d-block mb-4 h-100 not-active":"d-block mb-4 h-100")">
+                    <img class="figure-img img-fluid" src="@item.GalleryPathView@item.Folderpic" alt="sdsddsf" style="width:100%;height:200px;">
+
+                </a>
+                <figcaption class="figure-caption">@item.GalleryName</figcaption>
+            </figure>
+        </div>
+    }
+
+
+</div>
+
+
+
+

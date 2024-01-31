@@ -1,0 +1,33 @@
+﻿@using Dextra.Helpers
+<script>
+
+
+    try {
+        var Appselector;
+        var LoadLang;
+        var LoadSchema;
+        var GlobError;
+        var connectionId;
+        var WorkData = {
+            ClientPartName:'',
+            model_ClientPart: {},
+            model_CurrentFlowstep: {}
+        };
+        var Gvar = new Object();
+        Globalize.culture("hu");
+        var pageVariable = {
+            Jqwtheme: 'darkblue',
+            //JqwthemeAlt: 'ui-smoothness',
+            JqwthemeMenu: 'darkblue',
+            //Jqwtheme: 'ui-redmond',
+            //JqwthemeAlt: 'energyblue',
+            //Jqwtheme: ui-darkness,
+            JqwthemeAlt: 'darkblue1',
+            baseSiteURL: '@Url.Content("~/")',
+            formid: '@ViewBag.FormId',
+            SelectedLang: '@ViewBag.Preferedlang'
+        };
+        LangDictionary = $.extend(LangDictionary,  @Html.GetLangdictionaryToClient("Layout"));
+    } catch (err) { };
+
+</script>

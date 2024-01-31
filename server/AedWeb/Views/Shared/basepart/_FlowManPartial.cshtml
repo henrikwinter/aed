@@ -1,0 +1,105 @@
+﻿
+<style type="text/css">
+    .panel-heading-sm {
+        height: 23px;
+        padding: 4px 10px;
+    }
+
+    .panel-body-sm {
+        padding: 5px 10px;
+    }
+
+</style>
+
+<div class="d-flex flex-row p-2" style="border:2px solid #7dc3f2;margin-bottom:3px;">
+
+    <div class="d-flex flex-sm-column">
+        <div class="pb-sm-1 pl-1">
+            @using (Html.BeginForm((string)Model.FlowModel.CurrentFlowstep.Action, (string)Model.FlowModel.CurrentFlowstep.Controller, FormMethod.Post, new { id = "Transitionform", @class = "form-horizontal", @data = @Model.FlowModel.CurrentFlowstep.Flowname, data1 = @Model.FlowModel.CurrentFlowstep.Id_Flow }))
+            {
+                <span>Steps : </span>
+              @Html.Raw("<div class=\"btn-group btn-group-xs\" role=\"group\" aria-label=\"...\">")
+                foreach (var x in Model.FlowModel.CurrentFlowstep.Transitions)
+                          {
+                    <button type = "button" class="btn btn-outline-info btn-xs" data-bind="@x.Tostepname.@x.UserHasContinue.@x.Postback">
+                        <i class="fa fa-thumbs-up ml-2" aria-hidden="true"></i> &nbsp; @x.Tostepname 
+                    </button>
+                  }
+              @Html.Raw("</div>")
+                <button type="button" class="btn btn-outline-success btn-xs" data-bind="Cancel.Cancel.Cancel"> <i class="fa fa-thumbs-up ml-2" aria-hidden="true"></i> &nbsp;  Cancel</button>
+                <button id = "historybtn" type="button" class="btn btn-outline-secondary btn-xs"> <i class="fa fa-thumbs-up ml-2" aria-hidden="true"></i> &nbsp;  History</button>
+              }
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+@helper L(string title)
+              {
+                  @title
+}
+@* --- Folyamatlépés megerősítő Modal popoup ablak --- *@
+<div id="FlowWindow" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+
+                <h4 class="modal-title">@L("FLOWMETHODE")</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form id="ProcflowFrmForm" method="post" enctype="multipart/form-data">
+                            <div id="ProcFlowDiv"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div id="BtnGrpFlow">
+                    <button type="button" id="BtnFlowContinue" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-share-alt"></i> @L("BTN_CONTINUE")</button>
+                    <button type="button" id="BtnFlowDone" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-list-alt"></i> @L("BTN_DONE")</button>
+                    <button type="button" id="BtnFlowCancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="FlowHistoryWindow" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <h4 class="modal-title">@L("FLOWHISTORYWINDOW")</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="HistoryTree">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="BtnFlowCancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

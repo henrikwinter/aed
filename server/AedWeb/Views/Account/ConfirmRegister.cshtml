@@ -1,0 +1,38 @@
+﻿@using Dextra.Helpers
+@{
+    ViewBag.FormId = "Fid_AccountConfirmRegister";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+
+
+@section scripts {
+
+
+    @Html.ServerSideInclude("~/Views/Account/ConfirmRegister.js")
+    LangDictionary = $.extend(LangDictionary, @Html.GetLangdictionaryToClient("Fid_AccountLogin"));
+}
+
+
+
+<div class="container register">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="jumbotron bg-dark text-white" style="margin-top:50px;">
+                <h1>@L("ConfirmRegister")</h1>
+                <p>@L("ConfirmregisterTxt")</p>
+                <a href="@Url.Action("Index", "Home",new {   })" class="btn btn-info" role="button">@L("Ok")</a>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+            
+

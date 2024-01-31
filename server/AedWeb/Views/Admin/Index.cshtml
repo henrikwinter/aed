@@ -1,0 +1,506 @@
+﻿@using Dextra.Helpers   
+@model Xapp.Models.FlowViewModel
+@{
+    ViewBag.FormId = "Fid_AdminIndex";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    @Html.ServerSideInclude("~/Views/Admin/Index.js")
+    LangDictionary = $.extend(LangDictionary, @Html.GetLangdictionaryToClient("Fid_AdminIndex"));
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+
+
+
+
+<div class="row">
+    <div class="col-12">
+        <ul class="nav nav-tabs" id="statustab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link  show active" id="home-tab" data-toggle="tab" href="#functions" role="tab" aria-controls="home" aria-selected="true">@L("Function-Flows")</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="false">@L("User")</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#others" role="tab" aria-controls="others" aria-selected="false">@L("UserRoles")</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="functions" role="tabpanel" aria-labelledby="functions-tab">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="btn-group special" role="group" aria-label="..." style="width:100%;">
+                            <button class="btn btn-secondary btn-xs" type="button" id="Editflow">
+                                <i class="glyphicon glyphicon-search"></i>@L("Editflow")
+                            </button>
+                            <button class="btn btn-secondary btn-xs" type="button" id="Editstep">
+                                <i class="glyphicon glyphicon-search"></i>@L("Editstep")
+                            </button>
+                            <button class="btn btn-primary btn-xs" type="button" id="Addtransition">
+                                <i class="glyphicon glyphicon-plus"></i>@L("Addtransition")
+                            </button>
+                            <button class="btn btn btn-info btn-xs" type="button" id="Deltransition">
+                                <i class="glyphicon glyphicon-minus"></i>@L("Deltransition")
+                            </button>
+                            <button class="btn btn-secondary btn-xs" type="button" id="Addrole">
+                                <i class="glyphicon glyphicon-plus"></i>@L("AddRole")
+                            </button>
+                            <button class="btn btn-secondary btn-xs" type="button" id="Delrole">
+                                <i class="glyphicon glyphicon-minusn"></i>@L("DelRole")
+                            </button>
+                        </div>
+                        <div id="Flowstgrid"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="btn-group special" role="group" aria-label="..." style="width:100%;">
+                            <button class="btn btn-secondary btn-xs" type="button" id="AddFrole">
+                                <i class="glyphicon glyphicon-plus"></i>@L("AddFRole")
+                            </button>
+                            <button class="btn btn-secondary btn-xs" type="button" id="DelFrole">
+                                <i class="glyphicon glyphicon-minusn"></i>@L("DelFRole") 
+                            </button>
+                            <button class="btn btn-secondary btn-xs" type="button" id="EditFunction">
+                                <i class="glyphicon glyphicon-minusn"></i>@L("EditFunction") 
+                            </button>
+                        </div>
+                        <div id="Functgrid"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users-tab">
+                <div class="row">
+                    <div class="col-md-4">
+                        <span  id="jqxListlabel1" style="text-align:center;">@L("SystemRoles")</span>
+                        <div id="jqxList_Systemroles"></div>
+                        <span id="jqxListlabel2" style="text-align:center;">@L("Organizations")</span>
+                        <div id="jqxList_UserOrggroup"></div>
+                        <span  id="jqxListlabel2" style="text-align:center;">@L("UserGroup")</span>
+                        <div id="jqxList_UserUsergroup"></div>
+                    </div>
+                    <div class="col-md-8">
+                        <table  class="table table-sm">
+                            <tr>
+                                <td width="150"><input  class="form-control" type="text" id="inpVw_Users_Presearch" value="" /></td>
+                                <td><button type="button" id="btnVw_Users_Presearch" class="btn">@L("Filter")</button></td>
+                                <td><span id="SelectedVw_UsersTitle1" style="text-align:center;">-</span></td>
+                            </tr>
+                        </table>
+                        
+                        <div id="divGrid_Vw_Users"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="others" role="tabpanel" aria-labelledby="others-tab">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>
+                                <a href="#" onclick="LoadLang()">@L("LoadLang")</a>
+                            </li>
+                            <li>@Html.ActionLink("ReloadSchema", "ReloadSchema", "Home")</li>
+                            <li>@Html.ActionLink("ReloadAccesData", "ReloadAccesData", "Home")</li>
+                        </ul>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span id="jqxxListlabel3" style="text-align:center;">@L("UserGroups")</span>
+                                <div id="jqxxList_Usergroup"></div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <span id="jqxxListlabel4" style="text-align:center;">@L("UserGroupsRoles")</span>
+                                <div id="jqxxList_UsergroupRoles"></div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="FindPersonsModal" tabindex="-1" role="dialog" aria-labelledby="FindPersonsModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="FindPersonsModalTitle" class="modal-title">FindPersonsModal</span>
+                <span id="SelectedPersonsTitle" style="width:70%;text-align:center;"></span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="divColapseNewPersons" state="true" class="collapse">
+
+                    <div class="btn-group btn-group-xs special" role="group" aria-label="...">
+                        <div id="cmbXformRootSelect_Persons"></div>
+                        <button id="btnSaveXform_Persons" type="button" class="btn btn-outline-primary btn-xs">Save</button>
+                        <button id="btnSwitchSearc" type="button" class="btn btn-outline-primary btn-xs">Search</button>
+                    </div>
+
+                    <form id="frmXform_Persons">
+                        <div id="divXformHtml_Persons" class="form-horizontal xblck0"></div>
+                    </form>
+                </div>
+
+                <div id="divCollapsePersonsPicture" state="true" class="collapse">
+                    <div class="btn-group btn-group-xs special" role="group" aria-label="...">
+                        <button id="btnSwitchSearcFromPic" type="button" class="btn btn-outline-primary btn-xs">Search</button>
+                        <button id="btnUpload" type="button" class="btn btn-outline-primary btn-xs">btnUpload1</button>
+                        <button id="cropbutton" type="button" class="btn btn-outline-primary btn-xs">Crop</button>
+                        <button id="scalebutton" type="button" class="btn btn-outline-primary btn-xs">Scale</button>
+                        <button id="rotatebutton" type="button" class="btn btn-outline-primary btn-xs">Rotate</button>
+                        <button id="hflipbutton" type="button" class="btn btn-outline-primary btn-xs">H-flip</button>
+                        <button id="vflipbutton" type="button" class="btn btn-outline-primary btn-xs">V-flip</button>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <form id="UploadForm">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inpFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                            <div id="views" style="min-height:200px;padding:5px;margin:5px; border:0px solid grey;"></div>
+                            <input type="text" class="form-control mr-sm-2 mb-2 mb-sm-0" id="Picturetitle" name="Picturetitle" placeholder="Picturetitle">
+                        </form>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+
+                <div id="divColapseSearchPersons" state="true" class="collapse">
+
+
+                    <div class="btn-group btn-group-xs special" role="group" aria-label="...">
+                        <div id="cmbXformRootSelect_SearchPersons"></div>
+                        <button id="btnSaveXform_SearchPersons" type="button" class="btn btn-outline-primary btn-xs">Search</button>
+                        <button id="btnSwitchNew" type="button" class="btn btn-outline-primary btn-xs">New</button>
+                        <button id="btnSwitchEdit" type="button" class="btn btn-outline-primary btn-xs">Edit</button>
+                        <button id="btnDeleteXform_Persons" type="button" class="btn btn-outline-primary btn-xs">Delete</button>
+                        <button id="btnSwitchUpload" type="button" class="btn btn-outline-primary btn-xs">Upload</button>
+                    </div>
+
+
+                    <form id="frmXform_SearchPersons">
+                        <div id="divXformHtml_SearchPersons" class="form-horizontal xblck0"></div>
+                    </form>
+                </div>
+
+                <div id="divColapsePersonsGrid" state="true" class="collapse">
+                    <div id="divGrid_Persons"></div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="btnFindPersonsModalSave" class="btn btn-xs btn-primary">Select</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="RoleFModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header  modal-header-info">
+                <h4 class="modal-title">RoleF<small id="DialogeFFId"></small></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="" id="RoleFunctform">
+                    <input type="hidden" id="OrigFunctionName" name="OrigFunctionName" value="" />
+
+                    <div class="form-group row">
+                        <label for="Rolename" class="col-2 col-form-label">Rolename</label>
+                        <div class="col-10">
+                            <div id="Rolefname" name="Rolefname"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="Mode" class="col-2 col-form-label">Mode</label>
+                        <div class="col-10">
+                            <select class="form-control" id="Mode" name="Mode">
+                                <option>Mode1</option>
+                                <option>Mode2</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
+                <button id="btnSaveRoleFdata" type="button" class="btn btn-primary btn-xs">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="FunctionModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <h4 class="modal-title">Function<small id="DialogeOrgId"></small></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="" id="Functionform">
+                    <input type="hidden" id="OrigFunctionName" name="OrigFunctionName" value="" />
+                    <div class="form-group row">
+                        <label for="FunctionName" class="col-2 col-form-label">FlowName</label>
+                        <div class="col-10">
+                            <input type="text" class="form-control" id="FunctionName" name="FunctionName" placeholder="Functionname" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="FunctionDesc" class="col-2 col-form-label">FunctionDesc</label>
+                        <div class="col-10">
+                            <input type="text" class="form-control" id="FunctionDesc" name="FunctionDesc" placeholder="FunctionDesc">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="FunctionGroup" class="col-2 col-form-label">FunctionGroup</label>
+                        <div class="col-10">
+                            <input type="text" class="form-control" id="FunctionGroup" name="FunctionGroup" placeholder="FunctionGroup">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Functionparam" class="col-2 col-form-label">Functionparam</label>
+                        <div class="col-10">
+                            <input type="text" class="form-control" id="Functionparam" name="Functionparam" placeholder="Functionparam">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
+                <button id="btnSaveFunctiondata" type="button" class="btn btn-primary btn-xs">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="FlowModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <h4 class="modal-title">Flow<small id="DialogeOrgId"></small></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="" id="Flowform">
+                    <input type="hidden" id="OrigFlowName" name="OrigFlowName" value="" />
+                    <div class="form-group row">
+                        <label for="FlowName" class="col-2 col-form-label">FlowName</label>
+                        <div class="col-10">
+                            <input type="text" class="form-control" id="FlowName" name="FlowName" placeholder="Flowname" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="FlowDesc" class="col-2 col-form-label">FlowDesc</label>
+                        <div class="col-10">
+                            <input type="text" class="form-control" id="FlowDesc" name="FlowDesc" placeholder="FlowDesc">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="FlowGroup" class="col-2 col-form-label">FlowGroup</label>
+                        <div class="col-10">
+                            <input type="text" class="form-control" id="FlowGroup" name="FlowGroup" placeholder="FlowGroup">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="FlowTemplate" class="col-2 col-form-label">FlowTemplate</label>
+                        <div class="col-10">
+                            <input type="text" class="form-control" id="FlowTemplate" name="FlowTemplate" placeholder="FlowTemplate">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
+                <button id="btnSaveFlowdata" type="button" class="btn btn-primary btn-xs">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="StepModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <h4 class="modal-title">Step<small id="DialogeOrgId"></small></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="" id="Stepform">
+                    <input type="hidden" id="OrigStepName" name="OrigStepName" value="" />
+                    <input type="hidden" id="OrigFlowName" name="OrigFlowName" value="" />
+                    <div class="form-group row">
+                        <label for="StepName" class="col-2 col-form-label">StepName</label>
+                        <div class="col-10">
+                            <input type="text" class="form-control" id="StepName" name="StepName" placeholder="Stepname" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="StepDesc" class="col-2 col-form-label">StepDesc</label>
+                        <div class="col-10">
+                            <input type="text" class="form-control" id="StepDesc" name="StepDesc" placeholder="StepDesc">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Flag" class="col-2 col-form-label">Flag</label>
+                        <div class="col-10">
+                            <select class="form-control" id="Flag" name="Flag">
+                                <option></option>
+                                <option>Start</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="StepTemplate" class="col-2 col-form-label">StepTemplate</label>
+                        <div class="col-10">
+                            <input type="text" class="form-control" id="StepTemplate" name="StepTemplate" placeholder="StepTemplate">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
+                <button id="btnSaveStepdata" type="button" class="btn btn-primary btn-xs">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="TransitionModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <h4 class="modal-title">Transition<small id="DialogeOrgId"></small></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="" id="Transform">
+                    <input type="hidden" id="OrigStepName" name="OrigStepName" value="" />
+                    <input type="hidden" id="OrigFlowName" name="OrigFlowName" value="" />
+                    <div class="form-group row">
+                        <label for="ToStep" class="col-2 col-form-label">ToStep</label>
+                        <div class="col-10">
+                            <div id="ToStep" name="ToStep"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Postback" class="col-2 col-form-label">Postback</label>
+                        <div class="col-10">
+                            <input type="text" class="form-control" id="Postback" name="Postback" placeholder="Postback">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary  btn-xs" data-dismiss="modal">Close</button>
+                <button id="btnSaveTransitiondata" type="button" class="btn btn-primary btn-xs">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="RoleModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <h4 class="modal-title">Role<small id="DialogeOrgId"></small></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="" id="Roleform">
+                    <input type="hidden" id="OrigStepName" name="OrigStepName" value="" />
+                    <input type="hidden" id="OrigFlowName" name="OrigFlowName" value="" />
+                    <div class="form-group row">
+                        <label for="Rolename" class="col-2 col-form-label">Role</label>
+                        <div class="col-10">
+                            <div id="Rolename" name="Rolename"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Mode" class="col-2 col-form-label">Mode</label>
+                        <div class="col-10">
+                            <select class="form-control" id="Mode" name="Mode">
+                                <option>Mode1</option>
+                                <option>Mode2</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
+                <button id="btnSaveRoledata" type="button" class="btn btn-primary btn-xs">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="divCreateOrEditModal_Vw_Users" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <span class="modal-title">Vw_Users Modal</span>
+                <span id="SelectedVw_UsersTitle" style="width:70%;text-align:center;"></span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-header">
+                @*Valami:<div id="cmbXformRootSelect_Vw_Users"></div>*@
+            </div>
+            <div class="modal-body">
+                <form id="frmXform_Vw_Users">
+                    <div id="divXformHtml_Vw_Users" class="form-horizontal xblck0"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
+                <button id="btnSaveXform_Vw_Users" type="button" class="btn btn-primary btn-xs">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dlgAreYouSoure" aria-hidden="true" id="dlgAreYouSoure">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">Confirm</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" id="dlgAreYouSoureYes">Yes</button>
+                @*<button type="button" class="btn btn-default" id="dlgAreYouSoureCloseRecord">CloseRecord</button>*@
+                <button type="button" class="btn btn-primary" id="dlgAreYouSoureNo">No</button>
+            </div>
+        </div>
+    </div>
+</div>

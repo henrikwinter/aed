@@ -1,0 +1,62 @@
+﻿@using Dextra.Helpers
+@model Xapp.Models.FlowViewModel
+@{
+    ViewBag.FormId = "Fid_FlowIndex";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    @Html.ServerSideInclude("~/Views/Flow/Index.js")
+    LangDictionary = $.extend(LangDictionary, @Html.GetLangdictionaryToClient("Fid_FlowIndex"));
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+
+<style>
+    .Rowdetails {
+        border:1px solid #9ad6b0;
+        background-color:#eaf2ed;
+    }
+    .jqx-widget-header .jqx-widget-header-office{
+        background-color:#eaf2ed;
+    }
+
+
+</style>
+
+<div class="row" style="border:0px solid #d7e0ef;">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4" >
+  
+    </div>
+</div>
+<div class="row" style="border:0px solid #d7e0ef;">
+    <div class="col-md-12">
+        <div id="divGrid_Flows"></div>
+    </div>
+</div>
+
+
+<div id="FlowBar">
+        @foreach (var item in Model.Startableflows)
+            {
+            <div>@L(item.Groupname)</div>
+            <div>
+
+                @foreach (var x in item.startables)
+                {
+                    <a href="@Url.Action("Start" + x.Action,x.Controller,new { Flowname = x.Flowname, Stepname = x.Stepname })" class="btn btn-outline-info btn-xs" style="margin:8px;font-size:smaller;">
+                        <span class="glyphicon @x.Param" aria-hidden="true"></span>
+                        @L(x.Desc)
+                    </a>
+                }
+            </div>
+        }
+</div>

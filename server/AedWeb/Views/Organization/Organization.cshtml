@@ -1,0 +1,302 @@
+﻿@using Dextra.Helpers
+@using Xapp.FlowDatas
+@{
+    ViewBag.FormId = "Fid_OrganizationOrganization";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+        WorkData.model_ClientPart = @Html.Raw(Json.Encode(@Model.ViewModel.Org.ClientPart))
+        @Html.ServerSideInclude("~/Views/Organization/Organization.js")
+        LangDictionary = $.extend(LangDictionary, @Html.GetLangdictionaryToClient("Fid_OrganizationOrganization"));
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+<style type="text/css">
+    .tales {
+  width: 100%;
+}
+.carousel-inner{
+  width:100%;
+  max-height: 500px !important;
+}
+#IdBody {
+        /*background-color:#77dcfc;*/
+        border:2px solid #77dcfc;
+}
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12 rounded" style="border:1px solid grey;background-color:#cfe0fc;margin-bottom:2px;">
+            <a href="#divMoreControl" data-toggle="collapse" style="margin-left:15px;"><i class="glyphicon glyphicon-list" aria-hidden="true"><span class="text-primary">&nbsp;@L("MoreControl")</span></i></a>
+        </div>
+        <div id="divMoreControl" class="col-md-12 collapse" state="true" style="margin-bottom:5px;">
+            <div class="btn-group special  btn-group-xs " role="group" aria-label="..." >
+                <div>&nbsp;<span class="text-primary bg-light" style="width:250px;">@L("Time"):&nbsp;</span></div>
+                <div class="btn-group" style="padding-left:5px;padding-right:5px;"><div id="divOrgDateList"></div></div>
+                <div>&nbsp;<span class="text-primary bg-light">@L("Preselect"):&nbsp;</span></div>
+                <div class="btn-group" style="padding-left:5px;padding-right:5px;"><div id="divOrganizationPreselect"><div id="PreselectOrganizationTree"></div></div></div>
+            </div>
+        </div>
+        <div class="btn-group special  btn-group-xs " role="group" aria-label="...">
+            <button id="btnTreeSearch_Organization" type="button" class="btn btn-outline-success btn-xs"><i class="glyphicon glyphicon-search" aria-hidden="true"><span class="">&nbsp;@L("Search")</span></i></button>
+            <button id="btnNewXform_Organization" state="sensdisable" type="button" class="btn btn-outline-primary btn-xs">@L("btnNewXform_Organization")</button>
+            <button id="btnEditXform_Organization" type="button" class="btn btn-outline-primary btn-xs">@L("btnEditXform_Organization")</button>
+            <button id="btnDeleteXform_Organization" state="sensdisable" type="button" class="btn btn-outline-primary btn-xs">@L("btnDeleteXform_Organization")</button>
+        </div>
+
+    </div>
+    <div class="col-md-6" style="min-height:310px;margin-top:3px;">
+
+        <div id="divTreeSesrchContainer_Organization"></div>
+        <div id="divTreeContextmenu_Organization"></div>
+        <div id="divTree_Organization"></div>
+
+        @*<div id="divCopyStatus" class="row collapse" state="true">
+            <div class="col-md-6">
+                <div id="StatusCopyList" style="margin-bottom:10px;min-height:100px;border:1px solid #cfe0fc;"></div>
+            </div>
+            <div class="col-md-6">
+                <div class="btn-group-vertical">
+                    <button id="btnCopyStatusToTemp" state="sensdisable" type="button" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-backward" aria-hidden="true"></i>@L("Copy")</button>
+                    <button id="btnClearStatusToTemp" type="button" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-remove-circle" aria-hidden="true"></i>@L("Clear")</button>
+                </div>
+            </div>
+        </div>*@
+    </div>
+    <div class="col-md-6" style="min-height:310px;margin-top:3px;">
+        <div class="card border-info">
+            <div class="card-header border-info" id="divXformHtmlCommonView_XformLabel">@L("Organization")</div>
+            <div class="card-body" style="height:225px;overflow:auto;">
+                <form id="frmView_Organization_Xform">
+                    <div id="divXformHtmlCommonView" class="form-horizontal"></div>
+                </form>
+            </div>
+            <div class="card-footer border-info"></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    @*<div class="col-md-12" style="border:0px solid grey;">
+        <a href="#divCopyStatus" data-toggle="collapse" style="margin-left:15px;"><i class="glyphicon glyphicon-list" aria-hidden="true"></i></a>
+        <a id="btnSwitchStatusMode" href="#" style="margin-left:15px;"><i class="glyphicon glyphicon-random" aria-hidden="true"></i></a>
+    </div>*@
+
+    <div id="divColapseStatustable" state="true" class="col-md-12 collapse" >
+
+        <div class="btn-group special btn-group-xs" role="group" aria-label="..." style="margin-bottom:2px;">
+            <button id="btnNewXform_Orgstatus" type="button" state="sensdisable" class="btn btn-outline-info btn-xs"><i class="glyphicon glyphicon glyphicon-plus pull-left"></i>&nbsp;@L("NewXform_Orgstatus")</button>
+            <button id="btnEditXform_Orgstatus" type="button" state="sensdisable" class="btn btn-outline-info btn-xs"><i class="glyphicon glyphicon glyphicon-plus pull-left"></i>&nbsp;@L("EditXform_Orgstatus")</button>
+            <button id="btnDeleteXform_Orgstatus" type="button" state="sensdisable" class="btn btn-outline-info btn-xs"><i class="glyphicon glyphicon glyphicon-plus pull-left"></i>&nbsp;@L("DeleteXform_Orgstatus")</button>
+            <button type="button" state="sensdisable" id="btnNewXform_Statusrequirements" class="btn btn-outline-success btn-xs"><i class="glyphicon glyphicon glyphicon-plus pull-left"></i>&nbsp;@L("New_Requirements")</button>
+            <button type="button" state="sensdisable" id="btnEditXform_Statusrequirements" class="btn btn-outline-success btn-xs"><i class="glyphicon glyphicon-hand-right pull-left"></i>&nbsp;@L("Edit_Requirements")</button>
+            <button type="button" state="sensdisable" id="btnDeleteXform_Statusrequirements" class="btn btn-outline-success btn-xs"><i class="glyphicon glyphicon glyphicon-minus pull-left"></i>&nbsp;@L("Delete_Requirements")</button>
+            <span> </span>
+            <button type="button" id="btnAttachedPersons" class="btn btn-outline-dark btn-xs"><i class="glyphicon glyphicon glyphicon-minus pull-left"></i>&nbsp;@L("AttachedPersons")</button>
+            <button type="button" state="sensdisable" id="btnMultiplicateStatus" class="btn btn-outline-dark btn-xs"><i class="glyphicon glyphicon glyphicon-minus pull-left"></i>&nbsp;@L("MultiplicateStatus")</button>
+        </div>
+
+        <div id="divGrid_Orgstatus"></div>
+    </div>
+    
+    <div id="divColapseOrphantable" state="true" class="col-md-12 collapse">
+        <div id="divGrid_Orphanstatus"></div>
+    </div>
+
+</div>
+
+
+<div id="divCreateOrEditModal_Organization" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header modal-header-info">
+                    <span class="modal-title">@L("Organization Modal")</span>
+                    <span id="SelectedOrganizationTitle" style="width:70%;text-align:center;"></span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-header">
+                    @L("OrganizationType")<div id="cmbXformRootSelect_Organization"></div>
+                </div>
+                <div class="modal-body">
+                    <form id="frmXform_Organization">
+                        @*<div id="divXformHtml_Organization" class="form-horizontal xblck0"></div>*@
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input id="chkInsertPosition" name="chkInsertPosition" class="form-check-input" type="checkbox"> @L("InsertPosition")
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">@L("Close")</button>
+                    <button id="btnSaveXform_Organization" type="button" state="sensdisable" class="btn btn-primary btn-xs">@L("Save")</button>
+                    @*<button id="btnCloseAndSaveXform_Organization" type="button" class="btn btn-primary btn-xs">CloseAndSave</button>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<div id="divCreateOrEditModal_Orgstatus" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <span class="modal-title">@L("Orgstatus_Modal")</span>
+                <span id="SelectedOrgstatusTitle" style="width:70%;text-align:center;">-</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-header">
+               @L("Orgstatus_Modal_header"):<div id="cmbXformRootSelect_Orgstatus"></div>
+            </div>
+            <div class="modal-body">
+                <form id="frmXform_Orgstatus">
+                    @* <div id="divXformHtml_Orgstatus" class="form-horizontal xblck0"></div>*@
+                    @*<div class="form-check">
+                        <label class="form-check-label">
+                            <input id="chkInsertPosition" name="chkInsertPosition" class="form-check-input" type="checkbox"> InsertPosition
+                        </label>
+                    </div>*@
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">@L("Close")</button>
+                <button id="btnSaveXform_Orgstatus" state="sensdisable" type="button" class="btn btn-primary btn-xs">@L("Save")</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="divCreateOrEditModal_Statusrequirements" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header modal-header-info">
+                    <span class="modal-title">@L("Statusrequirements Modal")</span>
+                    <span id="SelectedStatusrequirementsTitle" style="width:70%;text-align:center;">-</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-header">
+                    @L("Staus_header_modal"):<div id="cmbXformRootSelect_Statusrequirements"></div>
+                </div>
+                <div class="modal-body">
+                    <form id="frmXform_Statusrequirements">
+                        @*<div id="divXformHtml_Statusrequirements" class="form-horizontal xblck0"></div>*@
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">@L("Close")</button>
+                    <button id="btnSaveXform_Statusrequirements" type="button" state="sensdisable" class="btn btn-primary btn-xs">@L("Save")</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div id="divViewModal_AttachedPersons" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <span class="modal-title">@L("AttachedPersons")</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-12">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators" id="CarusrlIndicator"></ol>
+
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner" role="listbox" id="CaruselInner">
+                            </div>
+
+                            <!-- Controls -->
+                            <a class="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+                                <span class="sr-only">@L("Previous")</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carousel-example-generic" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="false"></span>
+                                <span class="sr-only">@L("Next")</span>
+                            </a>
+                        </div>
+
+                    </div>
+                    @*<form id="frmXform_AttachedPersons">
+                            <div id="divXform_AttachedPersons" class="form-horizontal xblck0"></div>
+                        </form>*@
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">@L("Close")</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dlgAreYouSoure" aria-hidden="true" id="divMultiplicatStatusModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title"></span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            @L("Number of Copyed"):
+                        </div>
+                        <div class="col-md-6">
+                            <input id="MultipleStatusCount" value="1" min="1" max="5" step="1" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" state="sensdisable" class="btn btn-default" id="btnMultiplicatStatusOk">@L("Copy")</button>
+                    <button type="button" class="btn btn-primary" id="modal-btn-no">@L("No")</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dlgAreYouSoure" aria-hidden="true" id="dlgAreYouSoure">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title">@L("Confirm")</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" id="dlgAreYouSoureYes">@L("Yes")</button>
+                    <button type="button" class="btn btn-default" id="dlgAreYouSoureCloseRecord">@L("CloseRecord")</button>
+                    <button type="button" class="btn btn-primary" id="dlgAreYouSoureNo">@L("No")</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dlgAreYouSoure" aria-hidden="true" id="dlgAreYouSoure1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">@L("Confirm")</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" id="dlgAreYouSoure1Yes">@L("Yes")</button>
+                <button type="button" class="btn btn-primary" id="dlgAreYouSoure1No">@L("No")</button>
+            </div>
+        </div>
+    </div>
+</div>

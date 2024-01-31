@@ -1,0 +1,42 @@
+﻿@using Dextra.Helpers
+@{
+    ViewBag.FormId = "XSMANAGEUSER";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts {
+    @Html.ServerSideInclude("~/Views/Account/ManageUsers.js")
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+
+
+
+<div id="tblUsers"></div>
+
+
+
+ <!-- Modal HTML -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">@L("PasswordChange")</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="min-height:300px;">
+                <form id="frmUser">
+                    <div id="xfrmUser"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Close</button>
+                <button id="btnPaswordReset" type="button" class="btn btn-primary btn-xs">@L("PasswordChange")</button>
+            </div>
+        </div>
+    </div>
+</div>

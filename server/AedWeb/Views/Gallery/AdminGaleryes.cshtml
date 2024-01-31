@@ -1,0 +1,82 @@
+﻿@using Dextra.Helpers
+@{
+    ViewBag.FormId = "Fid_GalleryAdmin";
+    ViewBag.Title = "Gallery";
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    @Html.ServerSideInclude("~/Views/Gallery/AdminGaleryes.js")
+}
+
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+<div class="row">
+    <div class="col-md-6">
+        <div id="div_Gallery_Jqxtree"></div>
+    </div>
+    <div class="col-md-6">
+        <div class="alert alert-primary" role="alert">
+            <p id="Currentpat">Gallery</p>
+        </div>
+
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button id="DelGallery" type="button" class="btn btn-secondary" disabled>DelGallery</button>
+            <button id="AddGallery" type="button" class="btn btn-secondary" disabled>AddGallery</button>
+            <button id="SetAcces" type="button" class="btn btn-secondary">SetAcces</button>
+            @*<button id="btnDelUser" type="button" class="btn btn-primary">btnDelUser</button>*@
+        </div>
+        <label for="Directoryname"></label>
+        <div class="row">
+            <div class="col-md-6">
+                <select id="Userstr" class="form-control">
+                    @foreach (var item in Model.Users)
+                    {
+                        <option value="@item.UserName">@item.UserName</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-6">
+                <select id="Userstroper" class="form-control">
+                    @foreach (var item in Model.Accesmode)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
+
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            <label for="Directoryname">Directoryname</label>
+            <input id="Directoryname" class="form-control" placeholder="Directoryname">
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <button id="btnSave" type="button" class="btn btn-primary">Save</button>
+        <div id="div_Gallerydata_Jqxgrid"></div>
+    </div>
+</div>
+
+@*<div class="row">
+    <div class="col-md-12">
+        <button id="btnNewUser" type="button" class="btn btn-primary">btnNewUser</button>
+        <div class="form-group">
+            <label for="Username">Username</label>
+            <input id="Username" class="form-control" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input id="Password" class="form-control" placeholder="Password">
+        </div>
+    </div>
+</div>*@
+
+

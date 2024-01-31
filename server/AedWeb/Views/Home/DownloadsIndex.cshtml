@@ -1,0 +1,77 @@
+﻿@using Dextra.Helpers
+@model Xapp.Models.ExplorerModel
+@{
+    ViewBag.FormId = "Fid_HomeDownloadDocsIndex";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    @Html.ServerSideInclude("~/Views/Home/Index.js")
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+
+<style>
+    .dxLabel {
+        font-weight: 200;
+    }
+
+</style>
+
+@{Uri uri = Request.Url;}
+
+@*Show the current directory name using page URL. *@
+<h5>@L("Current dir") : <small style="color:blue;">@Model.Currentdirectory</small></h5>
+
+
+
+
+
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">@L("Filename")</th>
+                <th scope="col">@L("Size")</th>
+                <th scope="col">@L("Date")</th>
+                <th scope="col">@L("Comment")</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!string.IsNullOrEmpty(Model.Currentdirectory) && Model.Currentdirectory != "\\")
+            {
+                <tr>
+                    <td><a href="@Url.Action("DownloadsIndex" ,new { path = Model.Parentpath })"><i class="glyphicon glyphicon-arrow-left"></i>&nbsp; @L("Parrent")</a></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+            }
+
+
+            @foreach (Xapp.Models.DirModel dir in Model.dirModelList)
+            {
+                <tr>
+                    <td><a href="@Url.Action("DownloadsIndex" ,new { path = @dir.DirPath+"" })"><i class="glyphicon glyphicon-folder-open"></i>&nbsp; @dir.DirName</a></td>
+                    <td>Direcory</td>
+                    <td>@dir.DirAccessed.ToString("yyyy.MM.dd HH:mm")</td>
+                    <td></td>
+                </tr>
+            }
+
+            @foreach (Xapp.Models.FileModel file in Model.fileModelList)
+            {
+                @*<tr><td><a href="@(file.FilePath)" title="@file.FileName" target="_blank"><i class="glyphicon glyphicon-hand-down"></i>&nbsp; @file.FileName</a></td><td>@file.FileSizeText</td><td>@file.FileAccessed.ToString("yyyy.MM.dd HH:mm")</td><td>@file.FileComment</td></tr>*@
+                <tr>
+                    <td><a href="Download?file=@file.FilePath" target="_blank"><i class="glyphicon glyphicon-hand-down"></i>&nbsp; @file.FileName</a></td>
+                    <td>@file.FileSizeText</td>
+                    <td>@file.FileAccessed.ToString("yyyy.MM.dd HH:mm")</td>
+                    <td><p class="text-primary text-justify">@file.FileComment</p></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+

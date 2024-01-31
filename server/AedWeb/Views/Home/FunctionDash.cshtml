@@ -1,0 +1,31 @@
+﻿@using Dextra.Helpers
+@model Xapp.Models.FunctionViewModel
+@{
+    ViewBag.FormId = "Fid_HomeFunctionDash";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    @Html.ServerSideInclude("~/Views/Home/FunctionDash.js")
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+<style type="text/css">
+</style>
+
+<div class="funcdashcontainer">
+    <div class="d-flex flex-row justify-content-center">
+        <h4>@L("Functions")</h4>
+    </div>
+
+
+    @Model.Rendered
+
+
+</div>
+
+
+
+

@@ -1,0 +1,51 @@
+﻿@using Dextra.Helpers
+@model Xapp.FlowDatas.OrgPersonModel
+@{
+    ViewBag.FormId = "Fid_DevOrganizationSelect";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+
+@section scripts {
+    WorkData.model_CurrentFlowstep = @Html.Raw(Json.Encode(@Model.FlowModel.CurrentFlowstep))
+    WorkData.model_ClientPart = @Html.Raw(Json.Encode(@Model.ViewModel.Org.ClientPart))
+    @Html.ServerSideInclude("~/Views/DevOrganization/Select.js")
+    LangDictionary = $.extend(LangDictionary, @Html.GetLangdictionaryToClient("Fid_DevOrganizationSelect"));
+    if(WorkData.model_CurrentFlowstep.Error) GlobError(WorkData.model_CurrentFlowstep.ErrorMessage,4)
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+@Html.Partial("basepart/_FlowManPartial")
+
+<style type="text/css">
+    .red {
+        color: red;
+    }
+
+    .grey {
+        color: black;
+    }
+
+    .green {
+        color: green;
+    }
+</style>
+
+
+
+
+<h4>Select</h4>
+
+<style type="text/css">
+</style>
+<div id="divOrganizationPreselect">
+    <div id="PreselectOrganizationTree"></div>
+</div>
+<h4>Folyamatban az alabbiak</h4>
+
+<div id="IdInprogressDev">
+
+    asasdasasasd
+</div>

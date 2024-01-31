@@ -1,0 +1,97 @@
+﻿@using Dextra.Helpers
+@helper L(string title){    @Html.Lang(title, (string)ViewBag.FormId);}
+
+<div class="jumbotron" style="background-color:transparent;text-align:center;">
+    @if (Request.IsAuthenticated)
+    {
+        <h3>@L("Welcome")!</h3>
+    }
+    else
+    {
+        <h3>@L("Please login")!</h3>
+        <span>or</span><br />
+                        <a href="@Url.Action("Register", "Account")" class="" style="color:white;">&nbsp;@Html.Lang("Register", "Layout")</a>
+    }
+    <p>— A d'Extra-Line Techikai weboldala. Mindíg a jogosultságának megfelelő lehetőségek jellenek meg!</p>
+</div>
+
+<div class="row">
+
+    <div class="col-4">
+        <div class="row">
+            <div class="col-12 dxlead">
+                <h3>Defibrillátor Adatbázis</h3>
+                <p class="text-justify">
+                    <img src="~/Content/images/demo/defibrillator.jpg" class="rounded" alt="Cinque Terre" width="120" style="float:left;padding:0 5px 0 0;">
+                    A filmek, mint tudjuk, nem feltétlenül fedik a valóságot, mégis vannak olyan jelenetek, amelyek valószerűtlenségébe időnként bele sem gondolunk. Elfogadjuk, hogy ezek így vannak, hiszen ritkán, vagy egyáltalán nem kerülünk olyan helyzetbe, ahol ennek valóságával szembesülnünk kellene. Mennyire áll közel ez a valósághoz?
+                </p>
+            </div>
+            <div class="col-12 dxlead">
+                <h3>Hajóbérlés az Adrián</h3>
+                <p class="text-justify">
+                    <img src="~/Content/images/demo/hajo.jpg" class="rounded" alt="Cinque Terre" width="120" style="float:left;padding:0 5px 0 0;">
+                    A vitorlázás vagy motoros jachton nyaralás legközelebbi úti célja Horvátország páratlan szigetvilága. A Balatontól csupán 5-6 órányi autózással végig autópályán 50 jachtkikötő érhető el. Ezekben több ezer bérhajó legénysége cserélődik szombatonként. Az Adria horvát partvidéke tiszta tengerével, kellemes nyári klímájával, történelmi városaival, halászfalvaival vagy éppen lakatlan öbleivel a vízi sportok terén a közelsége miatt előkelő helyet foglal el. Az 5000 km hosszú partszakaszt 700 sziget láncolata tagolja, ahol sok-sok horgonyzó- és kikötőhelyet, elhagyatott, romantikus öblöt találhatunk.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="row">
+            <div class="col-12 dxlead">
+                <h3>Kiemelt hátterek</h3>
+                <p class="text-justify">
+                    <img src="~/Content/images/demo/desktop.jpg" class="rounded" alt="Cinque Terre" width="120" style="float:left;padding:0 5px 0 0;">
+                    Asztali háttér letöltéséhez kattintson a Letöltés lehetőségre, azután kattintson a jobb gombbal a képre, majd a Beállítás háttérként parancsra. Az asztali hátterek a zárolási képernyő vagy a kezdőképernyő háttereként is használhatóak.
+                </p>
+            </div>
+            <div class="col-12 dxlead">
+                <h3>Dalai láma</h3>
+                <p class="text-justify">
+                    <img src="~/Content/images/demo/dalailama.png" class="rounded" alt="Cinque Terre" width="120" style="float:left;padding:0 5px 0 0;">
+                    A dalai láma a tibeti buddhizmus gelugpa iskolájának legmagasabb rangú tanítója. Az egymást követő dalai lámák egy (tibeti nyelven) tulku (mongolul kubilgán) öröklési vonalat formálnak, ami 1391-ig nyúlik vissza. A jelenlegi[1] – tizennegyedik – dalai láma Tendzin Gyaco. A legtöbb tibeti buddhista iskola elfogadja a dalai lámát Tibet vallási és politikai vezetőjének, és mind a négy iskola vezetője a tibeti hagyományok legfőbb lámájaként ismeri el.Ez gyakorlatilag Tibet uralkodójává, valamint államfőjévé tette a pozíció betöltőjét. A dalai láma a fővárosból, Lhászából igazgatta az ország nagy részét (a 17. század közepétől 1959-ig, amikor a dalai lámának Indiába kellett menekülnie). A dalai láma a hit szerint Avalókitésvara, az együttérzés bodhiszattvájának megtestesülése, akit tibeti nyelven „Csenreszig”-nek neveznek.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="row">
+            <div class="col-12 dxlead">
+                <h3>Galileo és a GPS</h3>
+                <p class="text-justify">
+                    <img src="~/Content/images/demo/galileo.png" class="rounded" alt="Cinque Terre" width="120" style="float:left;padding:0 5px 0 0;">
+                    Napjainkra a Galileo műholdas navigációs rendszer a teljes konstelláció megközelítésével elérte azt a fejlettségi szintet, ami már a GPS-szel való közös használatot is lehetővé tette. A két rendszer kísérleti jellegű kollektív alkalmazása az ESA és a NASA kollaborációja révén a Nemzetközi Űrállomáson (ISS) jöhetett létre. Az alacsony Föld körüli pályán keringő űreszközök a saját pályájuk nagy pontosságú meghatározása és korrigálása céljából műholdas navigációs jeleket használnak. Ezek a jelek eddig a GPS műholdaktól származtak, azonban a legújabb tesztek az bizonyítják, hogy az említett pontosság eléréséhez a Galileo GPS-szel közös, vagy akár a Galileo egyedüli alkalmazása is megfelelő.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+<div class="row">
+    <div class="col-4">
+        <div class="alert alert-info" role="alert">
+            <a href="http://svn.dextraline.hu/webissues" class="alert-link">Issue manager</a>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="alert alert-info" role="alert">
+            <a href="https://svn.dextraline.hu/!/#" class="alert-link">Svn</a>
+        </div>
+        <div class="alert alert-info" role="alert">
+            <a href="http://svn.dextraline.hu/MeWebMail" class="alert-link">Webmail</a>
+        </div>
+
+    </div>
+    <div class="col-4">
+        <div class="alert alert-info" role="alert">
+            <a href="http://dextraline.hu" class="alert-link">Dextra</a>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,132 @@
+﻿@using Dextra.Helpers
+@model Xapp.Models.FlowViewModel
+@{
+    ViewBag.FormId = "Fid_PersonsPersons";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    var Appselector= '@ViewBag.Appselector';
+    @Html.ServerSideInclude("~/Views/Persons/Persons.js")
+    LangDictionary = $.extend(LangDictionary, @Html.GetLangdictionaryToClient("Pesons"));
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+<style type="text/css">
+</style>
+
+
+<div class="d-flex">
+    <div class="mr-auto p-2" style=""><strong>@L("Selected"):&nbsp;</strong><span id="divSelectedTxt"> - </span> </div>
+    <div class="p-2">  <span class="badge badge-info">@L("PersonModule")</span>               </div>
+    <div class="p-2"><a href="#" data-toggle="popover" title="@L("PersonHelp1")" data-content="@L("PersonHelp1Txt")"><i class="glyphicon glyphicon-info-sign"></i>&nbsp;@L("Help")</a> </div>
+</div>
+
+
+<div id="divColapseSearchPersons" state="true" class="row">
+
+    <div class="col-12">
+        <div class="btn-group btn-group-xs special" role="group" aria-label="..." style="padding:5px;">
+            <div><span class="text-primary bg-light">@L("Searchcondition"):&nbsp;</span></div>
+            <div id="cmbXformRootSelect_SearchPersons"></div>
+            <div>&nbsp;<span class="text-primary bg-light">@L("Timecondition"):&nbsp;</span></div>
+            <div id="divPersonDateList"></div>
+            <button id="btnSaveXform_SearchPersons" type="button" class="btn btn-outline-primary btn-xs">@L("Search")</button>
+            <button id="btnNewXform_Persons" type="button" class="btn btn-outline-primary btn-xs">@L("New")</button>
+            <button id="btnEditXform_Persons" type="button" class="btn btn-outline-primary btn-xs">@L("Edit")</button>
+            <button id="btnDeleteXform_Persons" type="button" class="btn btn-outline-primary btn-xs">@L("Delete")</button>
+        </div>
+
+        <form id="frmXform_SearchPersons" class="form-horizontal xblck0">
+
+        </form>
+
+    </div>
+
+
+</div>
+
+<div id="divColapsePersonsGrid" state="true" class="">
+    <div id="divGrid_Persons"></div>
+</div>
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dlgAreYouSoure" aria-hidden="true" id="dlgAreYouSoure">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">@L("Confirm")</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" id="dlgAreYouSoureYes">@L("Yes")</button>
+                <button type="button" class="btn btn-default" id="dlgAreYouSoureCloseRecord">@L("CloseRecord")</button>
+                <button type="button" class="btn btn-primary" id="dlgAreYouSoureNo">@L("No")</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="divCreateOrEditModal_Persons" tabindex="-1" role="dialog" aria-labelledby="divCreateOrEditModal_Persons" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <span id="FindPersonsModalTitle" class="modal-title">@L("PersonsModal")</span>
+                <span id="SelectedPersonsTitle" style="width:70%;text-align:center;"></span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="ModalLoaderStart"></div>
+                <div id="divColapseNewPersons" state="true" class="collapse">
+
+                    <div class="btn-group btn-group-xs special" role="group" aria-label="...">
+                        <div><span class="text-primary bg-light">@L("Select_PersonType"):&nbsp;</span></div>
+                        <div id="cmbXformRootSelect_Persons"></div>
+                        <button id="btnSaveXform_Persons" type="button" class="btn btn-outline-primary btn-xs">@L("Save")</button>
+                        <button id="btnSwitchUpload_Person" type="button" class="btn btn-outline-primary btn-xs">@L("SwitchUpload_Person")</button>
+                    </div>
+
+                    <form id="frmXform_Persons" class="form-horizontal xblck0">
+
+                    </form>
+                    <a href="#" data-toggle="popover" data-placement="top" title="@L("PersonHelp2")" data-content="@L("PersonHelp2Txt")"><i class="glyphicon glyphicon-info-sign"></i>&nbsp;@L("Help")</a>
+                </div>
+
+                <div id="divCollapsePersonsPicture" state="true" class="collapse">
+                    <div class="btn-group btn-group-xs special" role="group" aria-label="...">
+                        <button id="btnSwitchData_Person" type="button" class="btn btn-outline-primary btn-xs">@L("SwitchData_Person")</button>
+                        <button id="btnUpload" type="button" class="btn btn-outline-primary btn-xs">@L("btnUpload1")</button>
+                        <button id="cropbutton" type="button" class="btn btn-outline-primary btn-xs">@L("Crop")</button>
+                        <button id="scalebutton" type="button" class="btn btn-outline-primary btn-xs">@L("Scale")</button>
+                        <button id="rotatebutton" type="button" class="btn btn-outline-primary btn-xs">@L("Rotate")</button>
+                        <button id="hflipbutton" type="button" class="btn btn-outline-primary btn-xs">@L("H-flip")</button>
+                        <button id="vflipbutton" type="button" class="btn btn-outline-primary btn-xs">@L("V-flip")</button>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <form id="UploadForm">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inpFile">
+                                <label class="custom-file-label" for="customFile">@L("Choose file")</label>
+                            </div>
+                            <div id="views" style="min-height:200px;padding:5px;margin:5px; border:0px solid grey;"></div>
+                            <input type="text" class="form-control mr-sm-2 mb-2 mb-sm-0" id="Picturetitle" name="Picturetitle" placeholder="Picturetitle">
+                        </form>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <a href="#" data-toggle="popover" data-placement="top" title="@L("PersonHelp3")" data-content="@L("PersonHelp3Txt")"><i class="glyphicon glyphicon-info-sign"></i>&nbsp;@L("Help")</a>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+          
+                <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">@L("Close")</button>
+            </div>
+        </div>
+    </div>
+</div>

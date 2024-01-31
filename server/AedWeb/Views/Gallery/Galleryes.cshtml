@@ -1,0 +1,104 @@
+﻿@model  Xapp.Controllers.Galleryes
+@using Dextra.Helpers
+@{
+    ViewBag.FormId = "Fid_GalleryGalleryes";
+    ViewBag.Title = "Gallery";
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    var Currentgallery = @Html.Raw(Json.Encode(@Model))
+    @Html.ServerSideInclude("~/Views/Gallery/Index.js")
+}
+
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+<style>
+    .not-active {
+        pointer-events: none;
+        cursor: default;
+    }
+
+    .btn-group.special {
+        display: flex;
+    }
+
+    .special .btn {
+        flex: 1;
+    }
+
+
+</style>
+<div class="row">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-10">
+        <div class="btn-group special" role="group" aria-label="..." style="">
+
+            @Html.ActionLink("Black", "Galleryes", "Gallery", new { galleryColor = "Black" }, new { @class = "btn btn-outline-info", id = "btnBlack" })
+            @Html.ActionLink("Red", "Galleryes", "Gallery", new { galleryColor = "Red" }, new { @class = "btn btn-outline-danger", id = "btnRed" })
+            @Html.ActionLink("Blue", "Galleryes", "Gallery", new { galleryColor = "Blue" }, new { @class = "btn btn-outline-primary", id = "btnBlue" })
+            @Html.ActionLink("Green", "Galleryes", "Gallery", new { galleryColor = "Green" }, new { @class = "btn btn-outline-success", id = "btnGreen" })
+            @Html.ActionLink("Yellow", "Galleryes", "Gallery", new { galleryColor = "Yellow" }, new { @class = "btn btn-outline-warning", id = "btnYellow" })
+
+            @Html.ActionLink("Videos", "Galleryes", "Gallery", new { galleryColor = "Video" }, new { @class = "btn btn-outline-info", id = "btnVideos" })
+            @if (Model.Admin)
+            {
+                @Html.ActionLink("Admin", "AdminGaleryes", "Gallery", new { }, new { @class = "btn  btn-outline-danger" })
+            }
+
+        </div>
+
+    </div>
+    <div class="col-md-1">
+
+    </div>
+</div>
+<div class="d-flex flex-row justify-content-center align-items-center" style="padding-bottom:5px;">
+    " @Html.DisplayFor(model => model.Gname) " Gallery.
+</div>
+
+<div class="row text-center text-lg-left">
+
+
+
+    @foreach (var item in Model.gallerys)
+    {
+
+        if (item.Folderpic == "emptygallery.jpg")
+        {
+            if (Model.Admin)
+            {
+                <div class="col-lg-2 col-md-3 col-5">
+                    <a href="@Url.Content("~/Gallery/Gallery")?color=@item.GalleryColor&folder=@item.GalleryName" class="d-block mb-4 h-100">
+                        <img class="img-fluid img-thumbnail" src="~/@item.GalleryPathView@item.Folderpic" alt="">
+                        <p class="d-flex flex-row justify-content-center align-items-center">@item.GalleryName</p>
+                    </a>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-lg-2 col-md-3 col-5">
+                <a href="@Url.Content("~/Gallery/Gallery")?color=@item.GalleryColor&folder=@item.GalleryName" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="~/@item.GalleryPathView@item.Folderpic" alt="">
+                    <p class="d-flex flex-row justify-content-center align-items-center">@item.GalleryName</p>
+                </a>
+
+            </div>
+        }
+
+    }
+
+</div>
+
+
+
+
+
+
+
+
+

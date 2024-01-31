@@ -1,0 +1,86 @@
+﻿@using Dextra.Helpers
+@using Xapp.FlowDatas
+@{
+    ViewBag.FormId = "Fid_PersonsStatus";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+@section scripts {
+    WorkData.model_CurrentFlowstep = @Html.Raw(Json.Encode(@Model.FlowModel.CurrentFlowstep))
+    WorkData.model_ClientPart = @Html.Raw(Json.Encode(@Model.ViewModel.Org.ClientPart))
+    WorkData.model_PersonClientPart = @Html.Raw(Json.Encode(@Model.ViewModel.Person.ClientPart))
+    @Html.ServerSideInclude("~/Views/Persons/Status.js")
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+
+@Html.Partial("basepart/_FlowManPartial")
+
+<style type="text/css">
+    .tales {
+        width: 100%;
+    }
+
+    .carousel-inner {
+        width: 100%;
+        max-height: 500px !important;
+    }
+
+    .gray {
+        color: black\9;
+        background-color: gray\9;
+    }
+
+        .gray:not(.jqx-grid-cell-selected), .jqx-widget .gray:not(.jqx-grid-cell-hover) {
+            color: black;
+            background-color: gray !important;
+        }
+</style>
+
+<div id="divSelectedTxt" class="d-flex flex-column"><button id="btnAttachedPersons" type="button" class="btn btn-link"><h4 id="txtPersonname"></h4><h4 id="txtStatusname"></h4></button></div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="btn-group special  btn-group-xs " role="group" aria-label="...">
+            <button id="btnTreeSearch_Organization" type="button" class="btn btn-outline-primary btn-xs"><i class="glyphicon glyphicon-search" aria-hidden="true"></i></button>
+            <div class="btn-group" style="padding-left:5px;padding-right:5px;"><div id="divOrgDateList"></div></div>
+            <div class="btn-group" style="padding-left:5px;padding-right:5px;"><div id="divOrgPreselect"><div id="PreselectOrgTree"></div></div></div>
+        </div>
+
+    </div>
+    <div class="col-md-6" style="min-height:310px;margin-top:3px;">
+
+        <div id="divTreeSesrchContainer_Organization"></div>
+        <div id="divTreeContextmenu_Organization"></div>
+        <div id="divTree_Organization"></div>
+
+        <div id="divCopyStatus" class="row collapse" state="true">
+            <div class="col-md-6">
+                <div id="StatusCopyList" style="margin-bottom:10px;"></div>
+            </div>
+            <div class="col-md-6">
+                <div class="btn-group-vertical">
+                    <button id="btnCopyStatusToTemp" state="sensdisable" type="button" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-backward" aria-hidden="true"></i>Copy</button>
+                    <button id="btnClearStatusToTemp" type="button" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-remove-circle" aria-hidden="true"></i>Clear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" style="min-height:310px;margin-top:3px;">
+        <div class="card border-info">
+            <div class="card-header border-info" id="frmView_Organization_XformLabel">Organization</div>
+            <div class="card-body" style="min-height:225px;">
+                <form id="frmView_Organization_Xform">
+                    <div id="divXformHtmlView_Organization" class="form-horizontal"></div>
+                </form>
+            </div>
+            <div class="card-footer border-info"></div>
+        </div>
+    </div>
+
+</div>
+
+
+<div id="divGrid_Status"></div>

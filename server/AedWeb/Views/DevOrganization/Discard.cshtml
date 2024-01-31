@@ -1,0 +1,28 @@
+﻿@using Dextra.Helpers
+@using Xapp.FlowDatas
+@{
+    ViewBag.FormId = "Fid_DevOrganizationDiscard";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+}
+
+@section scripts {
+    WorkData.model_CurrentFlowstep = @Html.Raw(Json.Encode(@Model.FlowModel.CurrentFlowstep))
+    WorkData.model_ClientPart = @Html.Raw(Json.Encode(@Model.ViewModel.Org.ClientPart))
+    @Html.ServerSideInclude("~/Views/DevOrganization/Discard.js")
+    LangDictionary = $.extend(LangDictionary, @Html.GetLangdictionaryToClient("Fid_DevOrganizationDiscard"));
+    if(WorkData.model_CurrentFlowstep.Error) GlobError(WorkData.model_CurrentFlowstep.ErrorMessage,4)
+}
+
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
+}
+@Html.Partial("basepart/_FlowManPartial")
+
+<h4>Discard</h4>
+
+<style type="text/css">
+</style>
+
+

@@ -1,0 +1,1565 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C75CB554-E383-417A-AD6C-41456051206B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Xapp</RootNamespace>
+    <AssemblyName>Xapp</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AspNet.Identity.Oracle">
+      <HintPath>..\..\..\..\AspNet.Identity.Oracle\AspNet.Identity.Oracle\bin\Release\AspNet.Identity.Oracle.dll</HintPath>
+    </Reference>
+    <Reference Include="DextraLib, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Apps\DextraLib\DextraLib\bin\Release\DextraLib.dll</HintPath>
+    </Reference>
+    <Reference Include="HiQPdf.Free">
+      <HintPath>..\packages\hiqpdf.free.10.17.0\lib\net40\HiQPdf.Free.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.7.4\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.3.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.3.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Oracle.ManagedDataAccess">
+      <HintPath>..\..\..\AedWebservice\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Ude">
+      <HintPath>..\packages\Ude.NET.1.0.0\lib\net452\Ude.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AedController.cs" />
+    <Compile Include="Controllers\AjaxController.cs" />
+    <Compile Include="Controllers\AnimalController.cs" />
+    <Compile Include="Controllers\DevController.cs" />
+    <Compile Include="Controllers\DevOrganizationController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FlowController.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrganizationController.cs" />
+    <Compile Include="Controllers\PersonsController.cs" />
+    <Compile Include="Controllers\QueryController.cs" />
+    <Compile Include="Controllers\XszenyorController.cs" />
+    <Compile Include="Db\Activityes.cs" />
+    <Compile Include="Db\Aed_Activityes.cs" />
+    <Compile Include="Db\Aed_Devices.cs" />
+    <Compile Include="Db\Agreement.cs" />
+    <Compile Include="Db\Agreement_Elements.cs" />
+    <Compile Include="Db\Agreement_Pays.cs" />
+    <Compile Include="Db\Animal.cs" />
+    <Compile Include="Db\Animalhealtevents.cs" />
+    <Compile Include="Db\Animalothersdata.cs" />
+    <Compile Include="Db\Checklistelement.cs" />
+    <Compile Include="Db\Common.cs" />
+    <Compile Include="Db\Dxusergroup .cs" />
+    <Compile Include="Db\Dxxrefusergrouprole .cs" />
+    <Compile Include="Db\Dxxrefuserorggroup.cs" />
+    <Compile Include="Db\Dxxrefuserusergroup.cs" />
+    <Compile Include="Db\Flow.cs" />
+    <Compile Include="Db\Hupaszemely2.cs" />
+    <Compile Include="Db\Hupatestperson.cs" />
+    <Compile Include="Db\Kristof.cs" />
+    <Compile Include="Db\Mxrf_Animal_Ufiles.cs" />
+    <Compile Include="Db\Mxrf_Persons_Org.cs" />
+    <Compile Include="Db\Mxrf_Persons_Ufiles.cs" />
+    <Compile Include="Db\Organization.cs" />
+    <Compile Include="Db\Othersdata.cs" />
+    <Compile Include="Db\Persons.cs" />
+    <Compile Include="Db\Project.cs" />
+    <Compile Include="Db\Qualifications.cs" />
+    <Compile Include="Db\Queryes.cs" />
+    <Compile Include="Db\Statusrequirements.cs" />
+    <Compile Include="Db\Ufiles.cs" />
+    <Compile Include="Db\Vw_Agreementproperty.cs" />
+    <Compile Include="Db\Vw_Animalpropery.cs" />
+    <Compile Include="Db\Vw_Personsproperty.cs" />
+    <Compile Include="Db\Vw_User.cs" />
+    <Compile Include="Db\Vw_Users.cs" />
+    <Compile Include="Db\Vw_User_Orggroup .cs" />
+    <Compile Include="Dextra\Common\BaseController.cs" />
+    <Compile Include="Dextra\Common\CustomRequestValidation.cs" />
+    <Compile Include="Dextra\Common\PersistFieldAttribute.cs" />
+    <Compile Include="Dextra\Common\SignalHub.cs" />
+    <Compile Include="Dextra\Common\UtcDateTimeConverter.cs" />
+    <Compile Include="Dextra\Database\Dao.cs" />
+    <Compile Include="Dextra\Database\LocalDao.cs" />
+    <Compile Include="Dextra\Database\MDao.cs" />
+    <Compile Include="Dextra\Flowbase\DxRoleAndFlowManager.cs" />
+    <Compile Include="Dextra\Flowbase\Flowutils.cs" />
+    <Compile Include="Dextra\Flowbase\LoadRoleManagedFuctions.cs" />
+    <Compile Include="Dextra\Helpers\HtmlHelperExtensions.cs" />
+    <Compile Include="Dextra\Report\DocumentSource.cs" />
+    <Compile Include="Dextra\Report\Html2PdfXps.cs" />
+    <Compile Include="Dextra\Tools\C.cs" />
+    <Compile Include="Dextra\Tools\DTools.cs" />
+    <Compile Include="Dextra\Tools\Generator.cs" />
+    <Compile Include="Dextra\Tools\GlobalDictionary.cs" />
+    <Compile Include="Dextra\Tools\Langue.cs" />
+    <Compile Include="Dextra\Tools\MIMEAssistant.cs" />
+    <Compile Include="Dextra\Tools\P.cs" />
+    <Compile Include="Dextra\XForm\XForm.cs" />
+    <Compile Include="Dextra\XForm\XformProcess.cs" />
+    <Compile Include="FlowDatas\FlowModels.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ErrorModel.cs" />
+    <Compile Include="Models\ExplorerModel.cs" />
+    <Compile Include="Models\FlowViewModel.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\QueryModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Files\Ftp\Aed\test.html" />
+    <Content Include="App_Data\Files\Ftp\Aed\test1.html" />
+    <Content Include="App_Data\Files\Ftp\BM\test.html" />
+    <Content Include="App_Data\Files\Ftp\BM\test1.html" />
+    <Content Include="App_Data\Files\HtmlTemplates\confirmemail.html" />
+    <Content Include="App_Data\Files\HtmlTemplates\confirmemail1.html" />
+    <Content Include="App_Data\Files\HtmlTemplates\confirmemail2.html" />
+    <Content Include="App_Data\Files\Log\log.txt" />
+    <Content Include="App_Data\Files\registeredemaildomain.txt" />
+    <Content Include="App_Data\Files\Schemes\Xslt\Testconv.xsl" />
+    <Content Include="App_Data\Files\Xml\Codes\Icon-1.1.xml" />
+    <Content Include="App_Data\Files\Xml\Flows.xml" />
+    <Content Include="App_Data\Files\Xml\Functions.xml" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fontawesome-all.min.css" />
+    <Content Include="Content\glyphicons.css" />
+    <Content Include="Content\icons\Applications.ico" />
+    <Content Include="Content\icons\Documents.ico" />
+    <Content Include="Content\icons\Fonts.ico" />
+    <Content Include="Content\icons\Generic.ico" />
+    <Content Include="Content\icons\Groups.ico" />
+    <Content Include="Content\icons\lang_de.png" />
+    <Content Include="Content\icons\lang_eng.png" />
+    <Content Include="Content\icons\lang_hu.png" />
+    <Content Include="Content\icons\Library.ico" />
+    <Content Include="Content\icons\Movies.ico" />
+    <Content Include="Content\icons\SimpleAdmin.ico" />
+    <Content Include="Content\icons\SimpleView.ico" />
+    <Content Include="Content\icons\Sites.ico" />
+    <Content Include="Content\images\aedlogo.png" />
+    <Content Include="Content\images\aedlogo1.png" />
+    <Content Include="Content\images\aed\aed-1.PNG" />
+    <Content Include="Content\images\aed\aed-1a.PNG" />
+    <Content Include="Content\images\aed\aed-1b.PNG" />
+    <Content Include="Content\images\aed\aed-1c.PNG" />
+    <Content Include="Content\images\aed\aed-1d.PNG" />
+    <Content Include="Content\images\aed\aed-1e.PNG" />
+    <Content Include="Content\images\aed\aed-2.PNG" />
+    <Content Include="Content\images\aed\aed-2a.PNG" />
+    <Content Include="Content\images\aed\aed-2b.PNG" />
+    <Content Include="Content\images\aed\aed-2c.PNG" />
+    <Content Include="Content\images\aed\aed-2d.PNG" />
+    <Content Include="Content\images\aed\aed-3.PNG" />
+    <Content Include="Content\images\aed\aed-3a.PNG" />
+    <Content Include="Content\images\aed\aed-4a.PNG" />
+    <Content Include="Content\images\aed\aed-5a.PNG" />
+    <Content Include="Content\images\aed\aed-5b.PNG" />
+    <Content Include="Content\images\aed\aed-5c.PNG" />
+    <Content Include="Content\images\aed\aed-5d.PNG" />
+    <Content Include="Content\images\aed\aed-5e.PNG" />
+    <Content Include="Content\images\aed\aed-5f.PNG" />
+    <Content Include="Content\images\aed\aed-5g.PNG" />
+    <Content Include="Content\images\aed\aed-5h.PNG" />
+    <Content Include="Content\images\aed\beachflag.png" />
+    <Content Include="Content\images\aed\circlepulse.gif" />
+    <Content Include="Content\images\aed\circlepulse1.gif" />
+    <Content Include="Content\images\aed\circlepulse1a.gif" />
+    <Content Include="Content\images\aed\flag1.gif" />
+    <Content Include="Content\images\aed\flag1.png" />
+    <Content Include="Content\images\aed\flag2.gif" />
+    <Content Include="Content\images\aed\flag3.gif" />
+    <Content Include="Content\images\banner-bg.jpg" />
+    <Content Include="Content\images\banner-bg1.jpg" />
+    <Content Include="Content\images\bg-1.jpg" />
+    <Content Include="Content\images\bg-1a.jpg" />
+    <Content Include="Content\images\calendar.png" />
+    <Content Include="Content\images\demo\2.jpg" />
+    <Content Include="Content\images\demo\dalailama.png" />
+    <Content Include="Content\images\demo\defibrillator.jpg" />
+    <Content Include="Content\images\demo\department1.jpg" />
+    <Content Include="Content\images\demo\department2.jpg" />
+    <Content Include="Content\images\demo\department3.jpg" />
+    <Content Include="Content\images\demo\desktop.jpg" />
+    <Content Include="Content\images\demo\fp1.jpg" />
+    <Content Include="Content\images\demo\fp2.jpg" />
+    <Content Include="Content\images\demo\fp3.jpg" />
+    <Content Include="Content\images\demo\fp4.jpg" />
+    <Content Include="Content\images\demo\fp5.jpg" />
+    <Content Include="Content\images\demo\fp6.jpg" />
+    <Content Include="Content\images\demo\galileo.png" />
+    <Content Include="Content\images\demo\hajo.jpg" />
+    <Content Include="Content\images\demo\hotline-bg.jpg" />
+    <Content Include="Content\images\demo\news2.jpg" />
+    <Content Include="Content\images\dextra_logo.jpg" />
+    <Content Include="Content\images\empty.gif" />
+    <Content Include="Content\images\img_avatar1.png" />
+    <Content Include="Content\images\login_bg.jpg" />
+    <Content Include="Content\images\logo_small.png" />
+    <Content Include="Content\images\logo_small1.jpg" />
+    <Content Include="Content\images\logo_small1.png" />
+    <Content Include="Content\images\loigface.jpg" />
+    <Content Include="Content\images\loigface1.jpg" />
+    <Content Include="Content\images\loigface1.png" />
+    <Content Include="Content\images\nav-default-bg.png" />
+    <Content Include="Content\images\riska_logo.jpg" />
+    <Content Include="Content\images\riska_logo1.jpg" />
+    <Content Include="Content\images\szechenyi.gif" />
+    <Content Include="Content\images\szechenyi.jpg" />
+    <Content Include="Content\images\szechenyi1.gif" />
+    <Content Include="Content\images\szechenyi1.png" />
+    <Content Include="Content\jquery-te-1.4.0.css" />
+    <Content Include="Content\jquery-te.png" />
+    <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\normalize.css" />
+    <Content Include="Content\paper.css" />
+    <Content Include="Content\SiteAed.css" />
+    <Content Include="Content\SiteBm.css" />
+    <Content Include="Content\SiteSpecial.css" />
+    <Content Include="Content\SitePersonal.css" />
+    <Content Include="Content\SiteRiska.css" />
+    <Content Include="Content\SiteDefault.css" />
+    <Content Include="Content\Themes\DefaultDark.css" />
+    <Content Include="Content\Themes\DefaultLight.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Gallery\Black\Default\gdat.txt" />
+    <Content Include="Gallery\Black\Default\th\valoagtas001.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas002.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas003.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas004.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas005.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas006.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas007.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas008.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas009.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas010.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas011.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas012.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas013.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas014.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas015.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas016.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas017.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas018.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas019.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas020.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas021.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas022.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas023.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas024.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas025.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas026.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas027.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas028.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas029.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas030.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas031.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas032.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas033.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas034.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas035.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas036.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas037.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas038.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas039.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas040.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas041.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas042.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas043.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas044.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas045.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas046.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas047.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas048.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas049.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas050.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas051.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas052.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas053.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas054.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas055.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas056.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas057.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas058.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas059.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas060.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas061.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas062.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas063.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas064.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas065.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas066.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas067.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas068.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas069.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas070.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas071.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas072.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas073.jpg" />
+    <Content Include="Gallery\Black\Default\th\valoagtas074.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas001.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas002.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas003.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas004.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas005.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas006.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas007.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas008.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas009.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas010.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas011.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas012.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas013.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas014.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas015.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas016.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas017.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas018.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas019.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas020.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas021.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas022.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas023.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas024.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas025.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas026.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas027.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas028.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas029.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas030.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas031.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas032.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas033.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas034.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas035.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas036.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas037.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas038.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas039.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas040.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas041.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas042.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas043.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas044.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas045.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas046.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas047.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas048.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas049.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas050.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas051.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas052.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas053.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas054.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas055.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas056.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas057.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas058.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas059.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas060.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas061.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas062.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas063.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas064.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas065.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas066.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas067.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas068.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas069.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas070.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas071.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas072.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas073.jpg" />
+    <Content Include="Gallery\Black\Default\valoagtas074.jpg" />
+    <Content Include="Gallery\Black\G1\121-2136_IMG.JPG" />
+    <Content Include="Gallery\Black\G1\121-2152_IMG.JPG" />
+    <Content Include="Gallery\Black\G1\121-2159_IMG.JPG" />
+    <Content Include="Gallery\Black\G1\121-2168_IMG.JPG" />
+    <Content Include="Gallery\Black\G1\121-2172_IMG.JPG" />
+    <Content Include="Gallery\Black\G1\121-2173_IMG.JPG" />
+    <Content Include="Gallery\Black\G1\216029_09big.jpg.png" />
+    <Content Include="Gallery\Black\G1\336125_07big.jpg.png" />
+    <Content Include="Gallery\Black\G1\8.jpg" />
+    <Content Include="Gallery\Black\G1\81002_03.jpg.png" />
+    <Content Include="Gallery\Black\G1\agi.jpg" />
+    <Content Include="Gallery\Black\G1\Desert.jpg" />
+    <Content Include="Gallery\Black\G1\gdat.txt" />
+    <Content Include="Gallery\Black\G1\imagesIEMSDCIS.jpg.png" />
+    <Content Include="Gallery\Black\G1\Koala.jpg" />
+    <Content Include="Gallery\Black\G1\p1.png" />
+    <Content Include="Gallery\Black\G1\Penguins.jpg" />
+    <Content Include="Gallery\Black\G1\taj-mahal-hd-wallpaper-18.jpg" />
+    <Content Include="Gallery\Black\G1\th\121-2136_IMG.JPG" />
+    <Content Include="Gallery\Black\G1\th\121-2152_IMG.JPG" />
+    <Content Include="Gallery\Black\G1\th\121-2159_IMG.JPG" />
+    <Content Include="Gallery\Black\G1\th\121-2168_IMG.JPG" />
+    <Content Include="Gallery\Black\G1\th\121-2172_IMG.JPG" />
+    <Content Include="Gallery\Black\G1\th\121-2173_IMG.JPG" />
+    <Content Include="Gallery\Black\G1\th\216029_09big.jpg.png" />
+    <Content Include="Gallery\Black\G1\th\336125_07big.jpg.png" />
+    <Content Include="Gallery\Black\G1\th\8.jpg" />
+    <Content Include="Gallery\Black\G1\th\81002_03.jpg.png" />
+    <Content Include="Gallery\Black\G1\th\agi.jpg" />
+    <Content Include="Gallery\Black\G1\th\Desert.jpg" />
+    <Content Include="Gallery\Black\G1\th\imagesIEMSDCIS.jpg.png" />
+    <Content Include="Gallery\Black\G1\th\Koala.jpg" />
+    <Content Include="Gallery\Black\G1\th\p1.png" />
+    <Content Include="Gallery\Black\G1\th\Penguins.jpg" />
+    <Content Include="Gallery\Black\G1\th\taj-mahal-hd-wallpaper-18.jpg" />
+    <Content Include="Gallery\Black\G2\gdat.txt" />
+    <Content Include="Gallery\Black\G3\002.jpg" />
+    <Content Include="Gallery\Black\G3\009.jpg" />
+    <Content Include="Gallery\Black\G3\012.jpg" />
+    <Content Include="Gallery\Black\G3\2001-06-ser008.jpg" />
+    <Content Include="Gallery\Black\G3\fp5.jpg.png" />
+    <Content Include="Gallery\Black\G3\gdat.txt" />
+    <Content Include="Gallery\Black\G3\Koala.jpg" />
+    <Content Include="Gallery\Black\G3\th\002.jpg" />
+    <Content Include="Gallery\Black\G3\th\009.jpg" />
+    <Content Include="Gallery\Black\G3\th\012.jpg" />
+    <Content Include="Gallery\Black\G3\th\2001-06-ser008.jpg" />
+    <Content Include="Gallery\Black\G3\th\fp5.jpg.png" />
+    <Content Include="Gallery\Black\G3\th\Koala.jpg" />
+    <Content Include="Gallery\Black\Maci\gdat.txt" />
+    <Content Include="Gallery\detailed.txt" />
+    <Content Include="Gallery\emptygallery-0.jpg" />
+    <Content Include="Gallery\emptygallery-1.jpg" />
+    <Content Include="Gallery\emptygallery.jpg" />
+    <Content Include="Gallery\Green\Default\Desert.jpg" />
+    <Content Include="Gallery\Green\Default\gdat.txt" />
+    <Content Include="Gallery\Green\Default\IMG_5332.JPG" />
+    <Content Include="Gallery\Green\Default\Koala.jpg" />
+    <Content Include="Gallery\Green\Default\Penguins.jpg" />
+    <Content Include="Gallery\Green\Default\th\Desert.jpg" />
+    <Content Include="Gallery\Green\Default\th\IMG_5332.JPG" />
+    <Content Include="Gallery\Green\Default\th\Koala.jpg" />
+    <Content Include="Gallery\Green\Default\th\Penguins.jpg" />
+    <Content Include="Gallery\Green\Default\th\xx141.jpg.png" />
+    <Content Include="Gallery\Green\Default\xx141.jpg.png" />
+    <Content Include="Gallery\Red\Default\Desert.jpg" />
+    <Content Include="Gallery\Red\Default\gdat.txt" />
+    <Content Include="Gallery\Red\Default\Koala.jpg" />
+    <Content Include="Gallery\Red\Default\Penguins.jpg" />
+    <Content Include="Gallery\Red\Default\th\Desert.jpg" />
+    <Content Include="Gallery\Red\Default\th\Koala.jpg" />
+    <Content Include="Gallery\Red\Default\th\Penguins.jpg" />
+    <Content Include="Gallery\Red\G1\10351255_847175421981689_7058630867690827858_n.jpg" />
+    <Content Include="Gallery\Red\G1\10369602_301029890074214_5576212487227573378_n.jpg" />
+    <Content Include="Gallery\Red\G1\10374449_301028530074350_8472077210443578490_n.jpg" />
+    <Content Include="Gallery\Red\G1\10377639_301030510074152_2007515602842780301_n.jpg" />
+    <Content Include="Gallery\Red\G1\gdat.txt" />
+    <Content Include="Gallery\Red\G1\th\10351255_847175421981689_7058630867690827858_n.jpg" />
+    <Content Include="Gallery\Red\G1\th\10369602_301029890074214_5576212487227573378_n.jpg" />
+    <Content Include="Gallery\Red\G1\th\10374449_301028530074350_8472077210443578490_n.jpg" />
+    <Content Include="Gallery\Red\G1\th\10377639_301030510074152_2007515602842780301_n.jpg" />
+    <Content Include="Gallery\Video\Szenyorvideo\16_illetmeny_felvitele.mp4" />
+    <Content Include="Gallery\Video\Szenyorvideo\17_regibesor_felvitele.mp4" />
+    <Content Include="Gallery\Video\Szenyorvideo\folder.jpg" />
+    <Content Include="Gallery\Video\Szenyorvideo\gdat.txt" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\01_Szemelyes_adatok_felvitele.jpg" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\01_Szemelyes_adatok_felvitele.png" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\02_Lakcim_adatok_felvitele.jpg" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\03_Gyermek_adatok_felvitele.jpg" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\04_Nyelvismeret_felvitele.jpg" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\05_Vegzettsegek_felvitele.jpg" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\06_elozo_mv_felvitele.jpg" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\07_okmanyfej_felvitele.jpg" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\08_okmanyfej_modositasa.jpg" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\09_okmanyfej_jovahagyasa.jpg" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\10_jogviszony_letesitese.jpg" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\11_rendfok_felvitele.jpg" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\13_besor_felvitele2.jpg" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\14_munkarend_felvitele.jpg" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\15_potlek_felvitele.jpg" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\16_illetmeny_felvitele.jpg" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\17_regibesor_felvitele.jpg" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\defposter.png" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\gdat.txt" />
+    <Content Include="Gallery\Video\Szenyorvideo\th\logo-dex.png" />
+    <Content Include="Gallery\Video\Test\big_buck_bunny_720p_2mb.mp4" />
+    <Content Include="Gallery\Video\Test\folder.jpg" />
+    <Content Include="Gallery\Video\Test\gdat.txt" />
+    <Content Include="Gallery\Yellow\Default\Desert.jpg" />
+    <Content Include="Gallery\Yellow\Default\gdat.txt" />
+    <Content Include="Gallery\Yellow\Default\Koala.jpg" />
+    <Content Include="Gallery\Yellow\Default\Penguins.jpg" />
+    <Content Include="Gallery\Yellow\Default\th\Desert.jpg" />
+    <Content Include="Gallery\Yellow\Default\th\Koala.jpg" />
+    <Content Include="Gallery\Yellow\Default\th\Penguins.jpg" />
+    <Content Include="Gallery\Yellow\ubul\emptygallery.jpg" />
+    <Content Include="Gallery\Yellow\ubul\gdat.txt" />
+    <Content Include="Gallery\Yellow\ubul\IMG_5332.JPG" />
+    <Content Include="Gallery\Yellow\ubul\th\emptygallery.jpg" />
+    <Content Include="Gallery\Yellow\ubul\th\IMG_5332.JPG" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="jqwidgets\globalization\globalize.culture.cs-CZ.js" />
+    <Content Include="jqwidgets\globalization\globalize.culture.de-DE.js" />
+    <Content Include="jqwidgets\globalization\globalize.culture.en-CA.js" />
+    <Content Include="jqwidgets\globalization\globalize.culture.en-US.js" />
+    <Content Include="jqwidgets\globalization\globalize.culture.fr-FR.js" />
+    <Content Include="jqwidgets\globalization\globalize.culture.he-IL.js" />
+    <Content Include="jqwidgets\globalization\globalize.culture.hr-HR.js" />
+    <Content Include="jqwidgets\globalization\globalize.culture.hu-HU.js" />
+    <Content Include="jqwidgets\globalization\globalize.culture.it-IT.js" />
+    <Content Include="jqwidgets\globalization\globalize.culture.ja-JP.js" />
+    <Content Include="jqwidgets\globalization\globalize.culture.lt.js" />
+    <Content Include="jqwidgets\globalization\globalize.culture.ru-RU.js" />
+    <Content Include="jqwidgets\globalization\globalize.culture.sa-IN.js" />
+    <Content Include="jqwidgets\globalization\globalize.js" />
+    <Content Include="jqwidgets\jqx-all.js" />
+    <Content Include="jqwidgets\styles\images\backgroundTop.png" />
+    <Content Include="jqwidgets\styles\images\backImage.png" />
+    <Content Include="jqwidgets\styles\images\bg_black.png" />
+    <Content Include="jqwidgets\styles\images\bg_blackhover.png" />
+    <Content Include="jqwidgets\styles\images\bg_blackhover_horizontal.png" />
+    <Content Include="jqwidgets\styles\images\bg_blackpressed.png" />
+    <Content Include="jqwidgets\styles\images\bg_blackpressed_horizontal.png" />
+    <Content Include="jqwidgets\styles\images\bg_black_horizontal.png" />
+    <Content Include="jqwidgets\styles\images\bg_blueenergy.png" />
+    <Content Include="jqwidgets\styles\images\bg_darkblue.png" />
+    <Content Include="jqwidgets\styles\images\bg_darkbluehover.png" />
+    <Content Include="jqwidgets\styles\images\bg_darkbluepressed.png" />
+    <Content Include="jqwidgets\styles\images\blackbackground.png" />
+    <Content Include="jqwidgets\styles\images\black_gradient.png" />
+    <Content Include="jqwidgets\styles\images\check_black.png" />
+    <Content Include="jqwidgets\styles\images\check_blue.png" />
+    <Content Include="jqwidgets\styles\images\check_blue_indeterminate.png" />
+    <Content Include="jqwidgets\styles\images\check_disabled.png" />
+    <Content Include="jqwidgets\styles\images\check_indeterminate_black.png" />
+    <Content Include="jqwidgets\styles\images\check_indeterminate_disabled.png" />
+    <Content Include="jqwidgets\styles\images\check_indeterminate_white.png" />
+    <Content Include="jqwidgets\styles\images\check_lightblue.png" />
+    <Content Include="jqwidgets\styles\images\check_lightblue_indeterminate.png" />
+    <Content Include="jqwidgets\styles\images\check_white.png" />
+    <Content Include="jqwidgets\styles\images\close.png" />
+    <Content Include="jqwidgets\styles\images\close_black.png" />
+    <Content Include="jqwidgets\styles\images\close_blue.png" />
+    <Content Include="jqwidgets\styles\images\close_white.png" />
+    <Content Include="jqwidgets\styles\images\colorpicker\bar-hue.png" />
+    <Content Include="jqwidgets\styles\images\colorpicker\bar-saturation.png" />
+    <Content Include="jqwidgets\styles\images\colorpicker\map-hue.png" />
+    <Content Include="jqwidgets\styles\images\colorpicker\map-saturation-overlay.png" />
+    <Content Include="jqwidgets\styles\images\colorpicker\map-saturation.png" />
+    <Content Include="jqwidgets\styles\images\colorpicker\ReadMe.txt" />
+    <Content Include="jqwidgets\styles\images\common.png" />
+    <Content Include="jqwidgets\styles\images\crosshair-white.png" />
+    <Content Include="jqwidgets\styles\images\crosshair.png" />
+    <Content Include="jqwidgets\styles\images\darkness\ReadMe.txt" />
+    <Content Include="jqwidgets\styles\images\darkness\ui-bg_flat_30_cccccc_40x100.png" />
+    <Content Include="jqwidgets\styles\images\darkness\ui-bg_flat_50_5c5c5c_40x100.png" />
+    <Content Include="jqwidgets\styles\images\darkness\ui-bg_glass_20_555555_1x400.png" />
+    <Content Include="jqwidgets\styles\images\darkness\ui-bg_glass_40_0078a3_1x400.png" />
+    <Content Include="jqwidgets\styles\images\darkness\ui-bg_glass_40_ffc73d_1x400.png" />
+    <Content Include="jqwidgets\styles\images\darkness\ui-bg_gloss-wave_25_333333_500x100.png" />
+    <Content Include="jqwidgets\styles\images\darkness\ui-bg_highlight-soft_80_eeeeee_1x100.png" />
+    <Content Include="jqwidgets\styles\images\darkness\ui-bg_inset-soft_25_000000_1x100.png" />
+    <Content Include="jqwidgets\styles\images\darkness\ui-bg_inset-soft_30_f58400_1x100.png" />
+    <Content Include="jqwidgets\styles\images\darkness\ui-icons_222222_256x240.png" />
+    <Content Include="jqwidgets\styles\images\darkness\ui-icons_4b8e0b_256x240.png" />
+    <Content Include="jqwidgets\styles\images\darkness\ui-icons_a83300_256x240.png" />
+    <Content Include="jqwidgets\styles\images\darkness\ui-icons_cccccc_256x240.png" />
+    <Content Include="jqwidgets\styles\images\darkness\ui-icons_ffffff_256x240.png" />
+    <Content Include="jqwidgets\styles\images\darkred_gradient.png" />
+    <Content Include="jqwidgets\styles\images\drag.png" />
+    <Content Include="jqwidgets\styles\images\dragcancel.png" />
+    <Content Include="jqwidgets\styles\images\error.png" />
+    <Content Include="jqwidgets\styles\images\filter.png" />
+    <Content Include="jqwidgets\styles\images\html_editor.png" />
+    <Content Include="jqwidgets\styles\images\html_editor_white.png" />
+    <Content Include="jqwidgets\styles\images\icon-calendar-light.png" />
+    <Content Include="jqwidgets\styles\images\icon-calendar-metro-light.png" />
+    <Content Include="jqwidgets\styles\images\icon-calendar-metro-yellow-light.png" />
+    <Content Include="jqwidgets\styles\images\icon-calendar-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-calendar.png" />
+    <Content Include="jqwidgets\styles\images\icon-cancel-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-cancel.png" />
+    <Content Include="jqwidgets\styles\images\icon-delete-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-delete.png" />
+    <Content Include="jqwidgets\styles\images\icon-down-blue.png" />
+    <Content Include="jqwidgets\styles\images\icon-down-transparent.png" />
+    <Content Include="jqwidgets\styles\images\icon-down-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-down.png" />
+    <Content Include="jqwidgets\styles\images\icon-edit-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-edit.png" />
+    <Content Include="jqwidgets\styles\images\icon-first-blue.png" />
+    <Content Include="jqwidgets\styles\images\icon-first-transparent.png" />
+    <Content Include="jqwidgets\styles\images\icon-first-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-first.png" />
+    <Content Include="jqwidgets\styles\images\icon-info-small.png" />
+    <Content Include="jqwidgets\styles\images\icon-last-blue.png" />
+    <Content Include="jqwidgets\styles\images\icon-last-transparent.png" />
+    <Content Include="jqwidgets\styles\images\icon-last-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-last.png" />
+    <Content Include="jqwidgets\styles\images\icon-left-blue.png" />
+    <Content Include="jqwidgets\styles\images\icon-left-transparent.png" />
+    <Content Include="jqwidgets\styles\images\icon-left-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-left.png" />
+    <Content Include="jqwidgets\styles\images\icon-menu-minimized-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-menu-minimized.png" />
+    <Content Include="jqwidgets\styles\images\icon-menu-small-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-menu-small.png" />
+    <Content Include="jqwidgets\styles\images\icon-plus-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-plus.png" />
+    <Content Include="jqwidgets\styles\images\icon-recurrence-exception-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-recurrence-exception.png" />
+    <Content Include="jqwidgets\styles\images\icon-recurrence-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-recurrence.png" />
+    <Content Include="jqwidgets\styles\images\icon-right-blue.png" />
+    <Content Include="jqwidgets\styles\images\icon-right-transparent.png" />
+    <Content Include="jqwidgets\styles\images\icon-right-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-right.png" />
+    <Content Include="jqwidgets\styles\images\icon-save-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-save.png" />
+    <Content Include="jqwidgets\styles\images\icon-showpassword-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-showpassword.png" />
+    <Content Include="jqwidgets\styles\images\icon-sort-asc-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-sort-asc.png" />
+    <Content Include="jqwidgets\styles\images\icon-sort-desc-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-sort-desc.png" />
+    <Content Include="jqwidgets\styles\images\icon-sort-remove-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-sort-remove.png" />
+    <Content Include="jqwidgets\styles\images\icon-time-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-time.png" />
+    <Content Include="jqwidgets\styles\images\icon-up-blue.png" />
+    <Content Include="jqwidgets\styles\images\icon-up-transparent.png" />
+    <Content Include="jqwidgets\styles\images\icon-up-white.png" />
+    <Content Include="jqwidgets\styles\images\icon-up.png" />
+    <Content Include="jqwidgets\styles\images\icon_collapse.png" />
+    <Content Include="jqwidgets\styles\images\icon_expand.png" />
+    <Content Include="jqwidgets\styles\images\info.png" />
+    <Content Include="jqwidgets\styles\images\le-frog\ReadMe.txt" />
+    <Content Include="jqwidgets\styles\images\le-frog\ui-bg_diagonals-small_0_aaaaaa_40x40.png" />
+    <Content Include="jqwidgets\styles\images\le-frog\ui-bg_diagonals-thick_15_444444_40x40.png" />
+    <Content Include="jqwidgets\styles\images\le-frog\ui-bg_diagonals-thick_95_ffdc2e_40x40.png" />
+    <Content Include="jqwidgets\styles\images\le-frog\ui-bg_glass_55_fbf5d0_1x400.png" />
+    <Content Include="jqwidgets\styles\images\le-frog\ui-bg_highlight-hard_30_285c00_1x100.png" />
+    <Content Include="jqwidgets\styles\images\le-frog\ui-bg_highlight-soft_33_3a8104_1x100.png" />
+    <Content Include="jqwidgets\styles\images\le-frog\ui-bg_highlight-soft_50_4eb305_1x100.png" />
+    <Content Include="jqwidgets\styles\images\le-frog\ui-bg_highlight-soft_60_4ca20b_1x100.png" />
+    <Content Include="jqwidgets\styles\images\le-frog\ui-bg_inset-soft_10_285c00_1x100.png" />
+    <Content Include="jqwidgets\styles\images\le-frog\ui-icons_4eb305_256x240.png" />
+    <Content Include="jqwidgets\styles\images\le-frog\ui-icons_72b42d_256x240.png" />
+    <Content Include="jqwidgets\styles\images\le-frog\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="jqwidgets\styles\images\le-frog\ui-icons_ffffff_256x240.png" />
+    <Content Include="jqwidgets\styles\images\lightness\icon-first.png" />
+    <Content Include="jqwidgets\styles\images\lightness\icon-last.png" />
+    <Content Include="jqwidgets\styles\images\lightness\ReadMe.txt" />
+    <Content Include="jqwidgets\styles\images\lightness\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="jqwidgets\styles\images\lightness\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="jqwidgets\styles\images\lightness\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="jqwidgets\styles\images\lightness\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="jqwidgets\styles\images\lightness\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="jqwidgets\styles\images\lightness\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="jqwidgets\styles\images\lightness\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="jqwidgets\styles\images\lightness\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="jqwidgets\styles\images\lightness\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="jqwidgets\styles\images\lightness\ui-icons_222222_256x240.png" />
+    <Content Include="jqwidgets\styles\images\lightness\ui-icons_228ef1_256x240.png" />
+    <Content Include="jqwidgets\styles\images\lightness\ui-icons_ef8c08_256x240.png" />
+    <Content Include="jqwidgets\styles\images\lightness\ui-icons_ffd27a_256x240.png" />
+    <Content Include="jqwidgets\styles\images\lightness\ui-icons_ffffff_256x240.png" />
+    <Content Include="jqwidgets\styles\images\loader-small.gif" />
+    <Content Include="jqwidgets\styles\images\loader.gif" />
+    <Content Include="jqwidgets\styles\images\mail.png" />
+    <Content Include="jqwidgets\styles\images\material-icon-down-white.png" />
+    <Content Include="jqwidgets\styles\images\material-icon-down.png" />
+    <Content Include="jqwidgets\styles\images\material-icon-first-white.png" />
+    <Content Include="jqwidgets\styles\images\material-icon-first.png" />
+    <Content Include="jqwidgets\styles\images\material-icon-last-white.png" />
+    <Content Include="jqwidgets\styles\images\material-icon-last.png" />
+    <Content Include="jqwidgets\styles\images\material-icon-left-white.png" />
+    <Content Include="jqwidgets\styles\images\material-icon-left.png" />
+    <Content Include="jqwidgets\styles\images\material-icon-right-white.png" />
+    <Content Include="jqwidgets\styles\images\material-icon-right.png" />
+    <Content Include="jqwidgets\styles\images\material-icon-up-white.png" />
+    <Content Include="jqwidgets\styles\images\material-icon-up.png" />
+    <Content Include="jqwidgets\styles\images\material_check_black.png" />
+    <Content Include="jqwidgets\styles\images\material_check_white.png" />
+    <Content Include="jqwidgets\styles\images\menubutton.png" />
+    <Content Include="jqwidgets\styles\images\metro-icon-down-white.png" />
+    <Content Include="jqwidgets\styles\images\metro-icon-down.png" />
+    <Content Include="jqwidgets\styles\images\metro-icon-first-white.png" />
+    <Content Include="jqwidgets\styles\images\metro-icon-first.png" />
+    <Content Include="jqwidgets\styles\images\metro-icon-last-white.png" />
+    <Content Include="jqwidgets\styles\images\metro-icon-last.png" />
+    <Content Include="jqwidgets\styles\images\metro-icon-left-white.png" />
+    <Content Include="jqwidgets\styles\images\metro-icon-left.png" />
+    <Content Include="jqwidgets\styles\images\metro-icon-right - Copy.png" />
+    <Content Include="jqwidgets\styles\images\metro-icon-right-white.png" />
+    <Content Include="jqwidgets\styles\images\metro-icon-right.png" />
+    <Content Include="jqwidgets\styles\images\metro-icon-up-white.png" />
+    <Content Include="jqwidgets\styles\images\metro-icon-up.png" />
+    <Content Include="jqwidgets\styles\images\multi-arrow.gif" />
+    <Content Include="jqwidgets\styles\images\office-icon-down.png" />
+    <Content Include="jqwidgets\styles\images\office-icon-first.png" />
+    <Content Include="jqwidgets\styles\images\office-icon-last.png" />
+    <Content Include="jqwidgets\styles\images\office-icon-left.png" />
+    <Content Include="jqwidgets\styles\images\office-icon-right.png" />
+    <Content Include="jqwidgets\styles\images\office-icon-up.png" />
+    <Content Include="jqwidgets\styles\images\overcast\ReadMe.txt" />
+    <Content Include="jqwidgets\styles\images\overcast\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="jqwidgets\styles\images\overcast\ui-bg_flat_0_eeeeee_40x100.png" />
+    <Content Include="jqwidgets\styles\images\overcast\ui-bg_flat_55_c0402a_40x100.png" />
+    <Content Include="jqwidgets\styles\images\overcast\ui-bg_flat_55_eeeeee_40x100.png" />
+    <Content Include="jqwidgets\styles\images\overcast\ui-bg_glass_100_f8f8f8_1x400.png" />
+    <Content Include="jqwidgets\styles\images\overcast\ui-bg_glass_35_dddddd_1x400.png" />
+    <Content Include="jqwidgets\styles\images\overcast\ui-bg_glass_60_eeeeee_1x400.png" />
+    <Content Include="jqwidgets\styles\images\overcast\ui-bg_inset-hard_75_999999_1x100.png" />
+    <Content Include="jqwidgets\styles\images\overcast\ui-bg_inset-soft_50_c9c9c9_1x100.png" />
+    <Content Include="jqwidgets\styles\images\overcast\ui-icons_3383bb_256x240.png" />
+    <Content Include="jqwidgets\styles\images\overcast\ui-icons_454545_256x240.png" />
+    <Content Include="jqwidgets\styles\images\overcast\ui-icons_70b2e1_256x240.png" />
+    <Content Include="jqwidgets\styles\images\overcast\ui-icons_999999_256x240.png" />
+    <Content Include="jqwidgets\styles\images\overcast\ui-icons_fbc856_256x240.png" />
+    <Content Include="jqwidgets\styles\images\pin-black.png" />
+    <Content Include="jqwidgets\styles\images\pin-blue.png" />
+    <Content Include="jqwidgets\styles\images\pin-lightblue.png" />
+    <Content Include="jqwidgets\styles\images\pin-white.png" />
+    <Content Include="jqwidgets\styles\images\pin-yellow.png" />
+    <Content Include="jqwidgets\styles\images\pin.png" />
+    <Content Include="jqwidgets\styles\images\pinned-black.png" />
+    <Content Include="jqwidgets\styles\images\pinned-blue.png" />
+    <Content Include="jqwidgets\styles\images\pinned-lightblue.png" />
+    <Content Include="jqwidgets\styles\images\pinned-white.png" />
+    <Content Include="jqwidgets\styles\images\pinned-yellow.png" />
+    <Content Include="jqwidgets\styles\images\pinned.png" />
+    <Content Include="jqwidgets\styles\images\plus.png" />
+    <Content Include="jqwidgets\styles\images\plus_white.png" />
+    <Content Include="jqwidgets\styles\images\pointer.png" />
+    <Content Include="jqwidgets\styles\images\rangebar_classic.png" />
+    <Content Include="jqwidgets\styles\images\rangebar_darkblue.png" />
+    <Content Include="jqwidgets\styles\images\rangebar_shinyblack.png" />
+    <Content Include="jqwidgets\styles\images\rangebar_summer.png" />
+    <Content Include="jqwidgets\styles\images\redmond\icon-first.png" />
+    <Content Include="jqwidgets\styles\images\redmond\icon-last.png" />
+    <Content Include="jqwidgets\styles\images\redmond\ReadMe.txt" />
+    <Content Include="jqwidgets\styles\images\redmond\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="jqwidgets\styles\images\redmond\ui-bg_flat_55_fbec88_40x100.png" />
+    <Content Include="jqwidgets\styles\images\redmond\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="jqwidgets\styles\images\redmond\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="jqwidgets\styles\images\redmond\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="jqwidgets\styles\images\redmond\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="jqwidgets\styles\images\redmond\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="jqwidgets\styles\images\redmond\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="jqwidgets\styles\images\redmond\ui-icons_217bc0_256x240.png" />
+    <Content Include="jqwidgets\styles\images\redmond\ui-icons_2e83ff_256x240.png" />
+    <Content Include="jqwidgets\styles\images\redmond\ui-icons_469bdd_256x240.png" />
+    <Content Include="jqwidgets\styles\images\redmond\ui-icons_6da8d5_256x240.png" />
+    <Content Include="jqwidgets\styles\images\redmond\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="jqwidgets\styles\images\redmond\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="jqwidgets\styles\images\redmond\ui-icons_f9bd01_256x240.png" />
+    <Content Include="jqwidgets\styles\images\red_arrow_down.png" />
+    <Content Include="jqwidgets\styles\images\red_arrow_up.png" />
+    <Content Include="jqwidgets\styles\images\red_gradient.png" />
+    <Content Include="jqwidgets\styles\images\roundbg_check_black.png" />
+    <Content Include="jqwidgets\styles\images\roundbg_check_disabled.png" />
+    <Content Include="jqwidgets\styles\images\roundbg_check_indeterminate.png" />
+    <Content Include="jqwidgets\styles\images\roundbg_check_white.png" />
+    <Content Include="jqwidgets\styles\images\roundbg_classic_hover.png" />
+    <Content Include="jqwidgets\styles\images\roundbg_classic_normal.png" />
+    <Content Include="jqwidgets\styles\images\roundbg_disabled.png" />
+    <Content Include="jqwidgets\styles\images\search.png" />
+    <Content Include="jqwidgets\styles\images\search_white.png" />
+    <Content Include="jqwidgets\styles\images\smoothness\ReadMe.txt" />
+    <Content Include="jqwidgets\styles\images\smoothness\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="jqwidgets\styles\images\smoothness\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="jqwidgets\styles\images\smoothness\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="jqwidgets\styles\images\smoothness\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="jqwidgets\styles\images\smoothness\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="jqwidgets\styles\images\smoothness\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="jqwidgets\styles\images\smoothness\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="jqwidgets\styles\images\smoothness\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="jqwidgets\styles\images\smoothness\ui-icons_222222_256x240.png" />
+    <Content Include="jqwidgets\styles\images\smoothness\ui-icons_2e83ff_256x240.png" />
+    <Content Include="jqwidgets\styles\images\smoothness\ui-icons_454545_256x240.png" />
+    <Content Include="jqwidgets\styles\images\smoothness\ui-icons_888888_256x240.png" />
+    <Content Include="jqwidgets\styles\images\smoothness\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="jqwidgets\styles\images\sortasc.png" />
+    <Content Include="jqwidgets\styles\images\sortascbutton.png" />
+    <Content Include="jqwidgets\styles\images\sortdesc.png" />
+    <Content Include="jqwidgets\styles\images\sortdescbutton.png" />
+    <Content Include="jqwidgets\styles\images\sortremove.png" />
+    <Content Include="jqwidgets\styles\images\star.png" />
+    <Content Include="jqwidgets\styles\images\start\ReadMe.txt" />
+    <Content Include="jqwidgets\styles\images\start\ui-bg_flat_55_999999_40x100.png" />
+    <Content Include="jqwidgets\styles\images\start\ui-bg_flat_75_aaaaaa_40x100.png" />
+    <Content Include="jqwidgets\styles\images\start\ui-bg_glass_45_0078ae_1x400.png" />
+    <Content Include="jqwidgets\styles\images\start\ui-bg_glass_55_f8da4e_1x400.png" />
+    <Content Include="jqwidgets\styles\images\start\ui-bg_glass_75_79c9ec_1x400.png" />
+    <Content Include="jqwidgets\styles\images\start\ui-bg_gloss-wave_45_e14f1c_500x100.png" />
+    <Content Include="jqwidgets\styles\images\start\ui-bg_gloss-wave_50_6eac2c_500x100.png" />
+    <Content Include="jqwidgets\styles\images\start\ui-bg_gloss-wave_75_2191c0_500x100.png" />
+    <Content Include="jqwidgets\styles\images\start\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="jqwidgets\styles\images\start\ui-icons_0078ae_256x240.png" />
+    <Content Include="jqwidgets\styles\images\start\ui-icons_056b93_256x240.png" />
+    <Content Include="jqwidgets\styles\images\start\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="jqwidgets\styles\images\start\ui-icons_e0fdff_256x240.png" />
+    <Content Include="jqwidgets\styles\images\start\ui-icons_f5e175_256x240.png" />
+    <Content Include="jqwidgets\styles\images\start\ui-icons_f7a50d_256x240.png" />
+    <Content Include="jqwidgets\styles\images\start\ui-icons_fcd113_256x240.png" />
+    <Content Include="jqwidgets\styles\images\star_disabled.png" />
+    <Content Include="jqwidgets\styles\images\star_hover.png" />
+    <Content Include="jqwidgets\styles\images\stripes.png" />
+    <Content Include="jqwidgets\styles\images\success.png" />
+    <Content Include="jqwidgets\styles\images\sunny\ReadMe.txt" />
+    <Content Include="jqwidgets\styles\images\sunny\ui-bg_diagonals-medium_20_d34d17_40x40.png" />
+    <Content Include="jqwidgets\styles\images\sunny\ui-bg_flat_30_cccccc_40x100.png" />
+    <Content Include="jqwidgets\styles\images\sunny\ui-bg_flat_50_5c5c5c_40x100.png" />
+    <Content Include="jqwidgets\styles\images\sunny\ui-bg_gloss-wave_45_817865_500x100.png" />
+    <Content Include="jqwidgets\styles\images\sunny\ui-bg_gloss-wave_60_fece2f_500x100.png" />
+    <Content Include="jqwidgets\styles\images\sunny\ui-bg_gloss-wave_70_ffdd57_500x100.png" />
+    <Content Include="jqwidgets\styles\images\sunny\ui-bg_gloss-wave_90_fff9e5_500x100.png" />
+    <Content Include="jqwidgets\styles\images\sunny\ui-bg_highlight-soft_100_feeebd_1x100.png" />
+    <Content Include="jqwidgets\styles\images\sunny\ui-bg_inset-soft_30_ffffff_1x100.png" />
+    <Content Include="jqwidgets\styles\images\sunny\ui-icons_3d3d3d_256x240.png" />
+    <Content Include="jqwidgets\styles\images\sunny\ui-icons_bd7b00_256x240.png" />
+    <Content Include="jqwidgets\styles\images\sunny\ui-icons_d19405_256x240.png" />
+    <Content Include="jqwidgets\styles\images\sunny\ui-icons_eb990f_256x240.png" />
+    <Content Include="jqwidgets\styles\images\sunny\ui-icons_ed9f26_256x240.png" />
+    <Content Include="jqwidgets\styles\images\sunny\ui-icons_fadc7a_256x240.png" />
+    <Content Include="jqwidgets\styles\images\sunny\ui-icons_ffe180_256x240.png" />
+    <Content Include="jqwidgets\styles\images\tick.png" />
+    <Content Include="jqwidgets\styles\images\time.png" />
+    <Content Include="jqwidgets\styles\images\track_classic.png" />
+    <Content Include="jqwidgets\styles\images\track_darkblue.png" />
+    <Content Include="jqwidgets\styles\images\track_shinyblack.png" />
+    <Content Include="jqwidgets\styles\images\track_summer.png" />
+    <Content Include="jqwidgets\styles\images\warning.png" />
+    <Content Include="jqwidgets\styles\images\wp_check_indeterminate_white.png" />
+    <Content Include="jqwidgets\styles\images\wp_check_white.png" />
+    <Content Include="jqwidgets\styles\jqx.android.css" />
+    <Content Include="jqwidgets\styles\jqx.arctic.css" />
+    <Content Include="jqwidgets\styles\jqx.base.css" />
+    <Content Include="jqwidgets\styles\jqx.black.css" />
+    <Content Include="jqwidgets\styles\jqx.blackberry.css" />
+    <Content Include="jqwidgets\styles\jqx.bootstrap.css" />
+    <Content Include="jqwidgets\styles\jqx.classic.css" />
+    <Content Include="jqwidgets\styles\jqx.dark.css" />
+    <Content Include="jqwidgets\styles\jqx.darkblue.css" />
+    <Content Include="jqwidgets\styles\jqx.darkblue1.css" />
+    <Content Include="jqwidgets\styles\jqx.energyblue.css" />
+    <Content Include="jqwidgets\styles\jqx.flat.css" />
+    <Content Include="jqwidgets\styles\jqx.fresh.css" />
+    <Content Include="jqwidgets\styles\jqx.glacier.css" />
+    <Content Include="jqwidgets\styles\jqx.highcontrast.css" />
+    <Content Include="jqwidgets\styles\jqx.light.css" />
+    <Content Include="jqwidgets\styles\jqx.material-green.css" />
+    <Content Include="jqwidgets\styles\jqx.material-purple.css" />
+    <Content Include="jqwidgets\styles\jqx.material.css" />
+    <Content Include="jqwidgets\styles\jqx.metro.css" />
+    <Content Include="jqwidgets\styles\jqx.metrodark-orig.css" />
+    <Content Include="jqwidgets\styles\jqx.metrodark.css" />
+    <Content Include="jqwidgets\styles\jqx.mobile.css" />
+    <Content Include="jqwidgets\styles\jqx.office.css" />
+    <Content Include="jqwidgets\styles\jqx.orange.css" />
+    <Content Include="jqwidgets\styles\jqx.shinyblack.css" />
+    <Content Include="jqwidgets\styles\jqx.summer.css" />
+    <Content Include="jqwidgets\styles\jqx.ui-darkness.css" />
+    <Content Include="jqwidgets\styles\jqx.ui-le-frog.css" />
+    <Content Include="jqwidgets\styles\jqx.ui-lightness.css" />
+    <Content Include="jqwidgets\styles\jqx.ui-overcast.css" />
+    <Content Include="jqwidgets\styles\jqx.ui-redmond.css" />
+    <Content Include="jqwidgets\styles\jqx.ui-smoothness.css" />
+    <Content Include="jqwidgets\styles\jqx.ui-start.css" />
+    <Content Include="jqwidgets\styles\jqx.ui-sunny.css" />
+    <Content Include="jqwidgets\styles\jqx.web.css" />
+    <Content Include="jqwidgets\styles\jqx.windowsphone.css" />
+    <Content Include="Properties\PublishProfiles\LocalIIsdev.pubxml.user" />
+    <Content Include="Properties\PublishProfiles\svnre.pubxml.user" />
+    <Content Include="Scripts\bootstrap-input-spinner.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="App_Data\Files\Ftp\Aed\btest.nfo" />
+    <Content Include="App_Data\Files\Ftp\Aed\btest.zip" />
+    <Content Include="App_Data\Files\Ftp\Aed\Felhasznalo_kezikonyv.pdf" />
+    <Content Include="App_Data\Files\Ftp\Aed\TestVerdoc.doc" />
+    <Content Include="App_Data\Files\Ftp\Aed\TestVerdoc.nfo" />
+    <Content Include="App_Data\Files\Ftp\BM\atest1.nfo" />
+    <Content Include="App_Data\Files\Ftp\BM\atest1.zip" />
+    <Content Include="App_Data\Files\Ftp\BM\btest.nfo" />
+    <Content Include="App_Data\Files\Ftp\BM\btest.zip" />
+    <Content Include="App_Data\Files\Ftp\BM\Felhasznalo_kezikonyv.pdf" />
+    <Content Include="App_Data\Files\Ftp\BM\TestVerdoc.doc" />
+    <Content Include="App_Data\Files\Ftp\BM\TestVerdoc.nfo" />
+    <Content Include="App_Data\Files\Ftp\BM\version.nfo" />
+    <Content Include="App_Data\Files\Ftp\Default\atest1.nfo" />
+    <Content Include="App_Data\Files\Ftp\Default\atest1.zip" />
+    <Content Include="App_Data\Files\Ftp\Default\btest.nfo" />
+    <Content Include="App_Data\Files\Ftp\Default\btest.zip" />
+    <Content Include="App_Data\Files\Ftp\Default\def_test.nfo" />
+    <Content Include="App_Data\Files\Ftp\Default\def_test.zip" />
+    <Content Include="App_Data\Files\Lang\enum_hu.csv" />
+    <Content Include="App_Data\Files\Lang\enum_hu_out.csv" />
+    <Content Include="App_Data\Files\Lang\lang_hu.csv" />
+    <Content Include="App_Data\Files\Lang\lang_hu_out.csv" />
+    <Content Include="App_Data\Files\Log\la_2019.06.12..log" />
+    <Content Include="App_Data\Files\Log\la_2019.06.13..log" />
+    <Content Include="App_Data\Files\Log\la_2019.06.18..log" />
+    <Content Include="App_Data\Files\Log\la_2019.08.07..log" />
+    <Content Include="App_Data\Files\Log\la_2019.08.08..log" />
+    <Content Include="App_Data\Files\Log\la_2019.08.14..log" />
+    <Content Include="App_Data\Files\Log\la_2019.08.15..log" />
+    <Content Include="App_Data\Files\Log\la_2019.08.21..log" />
+    <Content Include="App_Data\Files\Log\la_2019.08.22..log" />
+    <Content Include="App_Data\Files\Log\la_2019.08.23..log" />
+    <Content Include="App_Data\Files\Log\la_2019.09.17..log" />
+    <Content Include="App_Data\Files\Log\la_2019.09.18..log" />
+    <Content Include="App_Data\Files\Log\la_2019.09.19..log" />
+    <Content Include="App_Data\Files\Log\la_2019.09.20..log" />
+    <Content Include="App_Data\Files\Log\la_2019.09.27..log" />
+    <Content Include="App_Data\Files\Log\la_2019.10.01..log" />
+    <Content Include="App_Data\Files\Log\la_2019.10.07..log" />
+    <Content Include="App_Data\Files\Log\log.txt.1" />
+    <Content Include="App_Data\Files\Log\log.txt.10" />
+    <Content Include="App_Data\Files\Log\log.txt.2" />
+    <Content Include="App_Data\Files\Log\log.txt.3" />
+    <Content Include="App_Data\Files\Log\log.txt.4" />
+    <Content Include="App_Data\Files\Log\log.txt.5" />
+    <Content Include="App_Data\Files\Log\log.txt.6" />
+    <Content Include="App_Data\Files\Log\log.txt.7" />
+    <Content Include="App_Data\Files\Log\log.txt.8" />
+    <Content Include="App_Data\Files\Log\log.txt.9" />
+    <None Include="App_Data\Files\Schemes\App.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\attributes-1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\App\Agreement-1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\App\Animal-1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\App\AnimalEvents-1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\App\CandidateRate-1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\App\Checklist-1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\App\Checklist-1.1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\App\Lay-1.1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\App\Lay-1.2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\App\Minta-de-roszz.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\App\Org-1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\App\Packing-1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\App\Person-1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\App\PersonSubEntity-0.9.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\App\PersonSubEntity-1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\App\PersonSubEntity-1.1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\App\Testforroot.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\App\Things-1.1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\Custom\AgrementSpecialization.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\Custom\Jobs-1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\Custom\LaySpecialization-1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\Custom\LaySpecialization.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\Custom\PaySpecialization.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\Custom\Workplaces-1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\General\AdminForms-1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\General\Doku-1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\General\FileInfo-1.1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\General\FlowstepData-1.2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\General\FlowVariables-1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\StaticFlows.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Core\Types\SimpleTypes.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\enumeration-1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Glob.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Projectdev-v1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\Queryes\Queryes.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\Files\Schemes\restrictedType-1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="jqwidgets\styles\images\colorpicker\Thumbs.db" />
+    <Content Include="jqwidgets\styles\images\darkness\Thumbs.db" />
+    <Content Include="jqwidgets\styles\images\le-frog\Thumbs.db" />
+    <Content Include="jqwidgets\styles\images\lightness\Thumbs.db" />
+    <Content Include="jqwidgets\styles\images\overcast\Thumbs.db" />
+    <Content Include="jqwidgets\styles\images\redmond\Thumbs.db" />
+    <Content Include="jqwidgets\styles\images\smoothness\Thumbs.db" />
+    <Content Include="jqwidgets\styles\images\start\Thumbs.db" />
+    <Content Include="jqwidgets\styles\images\sunny\Thumbs.db" />
+    <Content Include="jqwidgets\styles\images\Thumbs.db" />
+    <Content Include="jqwidgets\styles\Thumbs.db" />
+    <None Include="Properties\PublishProfiles\LocalIIsdev.pubxml" />
+    <None Include="Properties\PublishProfiles\svnre.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Dextra.js" />
+    <Content Include="Scripts\DextraConstans.js" />
+    <Content Include="Scripts\DextraFlowManParial.js" />
+    <Content Include="Scripts\DextraHelp.txt" />
+    <Content Include="Scripts\DextraNew.js" />
+    <Content Include="Scripts\DextraWidget.js" />
+    <Content Include="Scripts\Dextra_Jqentityes.js" />
+    <Content Include="Scripts\Dextra_Jqparameters.js" />
+    <Content Include="Scripts\dist\css\unite-gallery.css" />
+    <Content Include="Scripts\dist\images\button-close.png" />
+    <Content Include="Scripts\dist\images\cover-grid.png" />
+    <Content Include="Scripts\dist\images\icon-link32.png" />
+    <Content Include="Scripts\dist\images\icon-play32.png" />
+    <Content Include="Scripts\dist\images\icon-zoom32.png" />
+    <Content Include="Scripts\dist\images\lightbox-arrow-left.png" />
+    <Content Include="Scripts\dist\images\lightbox-arrow-right.png" />
+    <Content Include="Scripts\dist\images\lightbox-icon-close-compact.png" />
+    <Content Include="Scripts\dist\images\lightbox-icon-close-compact2.png" />
+    <Content Include="Scripts\dist\images\lightbox-icon-close.png" />
+    <Content Include="Scripts\dist\images\loader-black1.gif" />
+    <Content Include="Scripts\dist\images\loader-black2.gif" />
+    <Content Include="Scripts\dist\images\loader-black3.gif" />
+    <Content Include="Scripts\dist\images\loader-black4.gif" />
+    <Content Include="Scripts\dist\images\loader-black5.gif" />
+    <Content Include="Scripts\dist\images\loader-black6.gif" />
+    <Content Include="Scripts\dist\images\loader-black7.gif" />
+    <Content Include="Scripts\dist\images\loader-white1.gif" />
+    <Content Include="Scripts\dist\images\loader-white2.gif" />
+    <Content Include="Scripts\dist\images\loader-white3.gif" />
+    <Content Include="Scripts\dist\images\loader-white4.gif" />
+    <Content Include="Scripts\dist\images\loader-white5.gif" />
+    <Content Include="Scripts\dist\images\loader-white6.gif" />
+    <Content Include="Scripts\dist\images\loader-white7.gif" />
+    <Content Include="Scripts\dist\images\loader.gif" />
+    <Content Include="Scripts\dist\images\loader_bright.gif" />
+    <Content Include="Scripts\dist\images\loader_skype_trans.gif" />
+    <Content Include="Scripts\dist\images\not_loaded.png" />
+    <Content Include="Scripts\dist\images\play-button-round.png" />
+    <Content Include="Scripts\dist\images\play-button-square.png" />
+    <Content Include="Scripts\dist\images\transparent.png" />
+    <Content Include="Scripts\dist\js\jquery-11.0.min.js" />
+    <Content Include="Scripts\dist\js\unitegallery.js" />
+    <Content Include="Scripts\dist\js\unitegallery.min.js" />
+    <Content Include="Scripts\dist\release_log.txt" />
+    <Content Include="Scripts\dist\skins\alexis\alexis.css" />
+    <Content Include="Scripts\dist\skins\alexis\images\arrows_strip_left.png" />
+    <Content Include="Scripts\dist\skins\alexis\images\arrows_strip_right.png" />
+    <Content Include="Scripts\dist\skins\alexis\images\button_fullscreen.png" />
+    <Content Include="Scripts\dist\skins\alexis\images\button_playpause.png" />
+    <Content Include="Scripts\dist\skins\alexis\images\button_zoom_back.png" />
+    <Content Include="Scripts\dist\skins\alexis\images\button_zoom_minus.png" />
+    <Content Include="Scripts\dist\skins\alexis\images\button_zoom_plus.png" />
+    <Content Include="Scripts\dist\skins\alexis\images\grid_arrow_down.png" />
+    <Content Include="Scripts\dist\skins\alexis\images\grid_arrow_left.png" />
+    <Content Include="Scripts\dist\skins\alexis\images\grid_arrow_left_hortype.png" />
+    <Content Include="Scripts\dist\skins\alexis\images\grid_arrow_right.png" />
+    <Content Include="Scripts\dist\skins\alexis\images\grid_arrow_right_hortype.png" />
+    <Content Include="Scripts\dist\skins\alexis\images\grid_arrow_up.png" />
+    <Content Include="Scripts\dist\skins\alexis\images\grid_handle_down.png" />
+    <Content Include="Scripts\dist\skins\alexis\images\grid_handle_left.png" />
+    <Content Include="Scripts\dist\skins\alexis\images\grid_handle_right.png" />
+    <Content Include="Scripts\dist\skins\alexis\images\grid_handle_up.png" />
+    <Content Include="Scripts\dist\skins\alexis\images\slider_arrow_left.png" />
+    <Content Include="Scripts\dist\skins\alexis\images\slider_arrow_right.png" />
+    <Content Include="Scripts\dist\skins\alexis\images\slider_bullets.png" />
+    <Content Include="Scripts\dist\skins\default\arrows_strip_down.png" />
+    <Content Include="Scripts\dist\skins\default\arrows_strip_left.png" />
+    <Content Include="Scripts\dist\skins\default\arrows_strip_right.png" />
+    <Content Include="Scripts\dist\skins\default\arrows_strip_up.png" />
+    <Content Include="Scripts\dist\skins\default\arrow_grid_down.png" />
+    <Content Include="Scripts\dist\skins\default\arrow_grid_up.png" />
+    <Content Include="Scripts\dist\skins\default\button_fullscreen.png" />
+    <Content Include="Scripts\dist\skins\default\button_playpause.png" />
+    <Content Include="Scripts\dist\skins\default\grid_arrow_left.png" />
+    <Content Include="Scripts\dist\skins\default\grid_arrow_right.png" />
+    <Content Include="Scripts\dist\skins\default\grid_handle_black_bottom.png" />
+    <Content Include="Scripts\dist\skins\default\grid_handle_black_left.png" />
+    <Content Include="Scripts\dist\skins\default\grid_handle_black_right.png" />
+    <Content Include="Scripts\dist\skins\default\grid_handle_black_top.png" />
+    <Content Include="Scripts\dist\skins\default\icon_zoom_back.png" />
+    <Content Include="Scripts\dist\skins\default\icon_zoom_minus.png" />
+    <Content Include="Scripts\dist\skins\default\icon_zoom_plus.png" />
+    <Content Include="Scripts\dist\skins\default\slider_arrow_left.png" />
+    <Content Include="Scripts\dist\skins\default\slider_arrow_right.png" />
+    <Content Include="Scripts\dist\skins\default\slider_bullets.png" />
+    <Content Include="Scripts\dist\skins\default\tile_bullets_blue.png" />
+    <Content Include="Scripts\dist\skins\default\tile_bullets_brown.png" />
+    <Content Include="Scripts\dist\skins\default\tile_bullets_gray.png" />
+    <Content Include="Scripts\dist\skins\default\tile_bullets_green.png" />
+    <Content Include="Scripts\dist\skins\default\tile_bullets_red.png" />
+    <Content Include="Scripts\dist\skins\default\tile_button_left.png" />
+    <Content Include="Scripts\dist\skins\default\tile_button_play_pause.png" />
+    <Content Include="Scripts\dist\skins\default\tile_button_right.png" />
+    <Content Include="Scripts\dist\themes\carousel\ug-theme-carousel.js" />
+    <Content Include="Scripts\dist\themes\compact\ug-theme-compact.js" />
+    <Content Include="Scripts\dist\themes\default\images\arrows_strip_left.png" />
+    <Content Include="Scripts\dist\themes\default\images\arrows_strip_right.png" />
+    <Content Include="Scripts\dist\themes\default\images\arrow_down_up.png" />
+    <Content Include="Scripts\dist\themes\default\images\button_fullscreen.png" />
+    <Content Include="Scripts\dist\themes\default\images\button_fullscreen_single.png" />
+    <Content Include="Scripts\dist\themes\default\images\button_playpause.png" />
+    <Content Include="Scripts\dist\themes\default\images\button_playpause_single.png" />
+    <Content Include="Scripts\dist\themes\default\ug-theme-default.css" />
+    <Content Include="Scripts\dist\themes\default\ug-theme-default.js" />
+    <Content Include="Scripts\dist\themes\grid\ug-theme-grid.js" />
+    <Content Include="Scripts\dist\themes\slider\ug-theme-slider.js" />
+    <Content Include="Scripts\dist\themes\tilesgrid\ug-theme-tilesgrid.js" />
+    <Content Include="Scripts\dist\themes\tiles\ug-theme-tiles.js" />
+    <Content Include="Scripts\dist\themes\video\images\arrow_left.png" />
+    <Content Include="Scripts\dist\themes\video\images\arrow_right.png" />
+    <Content Include="Scripts\dist\themes\video\skin-bottom-text.css" />
+    <Content Include="Scripts\dist\themes\video\skin-right-no-thumb.css" />
+    <Content Include="Scripts\dist\themes\video\skin-right-thumb.css" />
+    <Content Include="Scripts\dist\themes\video\skin-right-title-only.css" />
+    <Content Include="Scripts\dist\themes\video\ug-theme-video.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-te-1.4.0.min.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.Jcrop.js" />
+    <Content Include="Scripts\jquery.signalR-2.3.0.js" />
+    <Content Include="Scripts\jquery.signalR-2.3.0.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\unitegallery.js" />
+    <Content Include="Scripts\unitegallery.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Account\ConfirmEmail.js" />
+    <Content Include="Views\Account\ConfirmRegister.js" />
+    <Content Include="Views\Account\Login.js" />
+    <Content Include="Views\Account\ManageUsers.js" />
+    <Content Include="Views\Account\Register.js" />
+    <Content Include="Views\Admin\Index.js" />
+    <Content Include="Views\Admin\NewAdmin.js" />
+    <Content Include="Views\Aed\detailed.txt" />
+    <Content Include="Views\Aed\Help.js" />
+    <Content Include="Views\Aed\News.js" />
+    <Content Include="Views\Aed\Statistics.js" />
+    <Content Include="Views\Animal\Animal.js" />
+    <Content Include="Views\Animal\Propertyes.js" />
+    <Content Include="Views\Base\NUpload.js" />
+    <Content Include="Views\Base\NUploadAnimal.js" />
+    <Content Include="Views\Base\pFindpersons.js" />
+    <Content Include="Views\Base\pTreeBase.js" />
+    <Content Include="Views\Base\pUpload.js" />
+    <Content Include="Views\Base\Test.js" />
+    <Content Include="Views\DevOrganization\Activate.js" />
+    <Content Include="Views\DevOrganization\Check.js" />
+    <Content Include="Views\DevOrganization\Develope.js" />
+    <Content Include="Views\DevOrganization\Discard.js" />
+    <Content Include="Views\DevOrganization\Select.js" />
+    <Content Include="Views\Dev\Index.js" />
+    <Content Include="Views\Flow\Index.js" />
+    <Content Include="Views\Gallery\AdminGaleryes.js" />
+    <Content Include="Views\Gallery\Gallery.js" />
+    <Content Include="Views\Gallery\Index.js" />
+    <Content Include="Views\Gallery\Szenyorvideo.js" />
+    <Content Include="Views\Home\AccesDenied.js" />
+    <Content Include="Views\Home\Aed\AedIndex.js" />
+    <Content Include="Views\Home\Bm\BmIndex.js" />
+    <Content Include="Views\Home\cimer.png" />
+    <Content Include="Views\Home\Default\DefaultIndex.js" />
+    <Content Include="Views\Home\FunctionDash.js" />
+    <Content Include="Views\Home\Index.js" />
+    <Content Include="Views\Home\ReportDash.js" />
+    <Content Include="Views\Home\Personal\PersonalIndex.js" />
+    <Content Include="Views\Home\Riska\RiskaIndex.js" />
+    <Content Include="Views\Home\SchedulerDash.js" />
+    <Content Include="Views\Home\SessionExpire.js" />
+    <Content Include="Views\Home\Special\SpecialIndex.js" />
+    <Content Include="Views\Organization\Organization.js" />
+    <Content Include="Views\Persons\Contract.js" />
+    <Content Include="Views\Persons\Persons.js" />
+    <Content Include="Views\Persons\Propertyes.js" />
+    <Content Include="Views\Persons\Select.js" />
+    <Content Include="Views\Persons\Status.js" />
+    <Content Include="Views\Persons\T_Persons.js" />
+    <Content Include="Views\Query\Queryes.js" />
+    <Content Include="Views\Xszenyor\Index.js" />
+    <Content Include="Views\Xszenyor\minta.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmRegister.cshtml" />
+    <Content Include="Views\Account\ManageUsers.cshtml" />
+    <Content Include="Views\Account\Register-saved.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Aed\Help.cshtml" />
+    <Content Include="Views\Aed\News.cshtml" />
+    <Content Include="Views\Aed\Statistics.cshtml" />
+    <Content Include="Views\Animal\Animal.cshtml" />
+    <Content Include="Views\Animal\Propertyes.cshtml" />
+    <Content Include="Views\DevOrganization\Activate.cshtml" />
+    <Content Include="Views\DevOrganization\Check.cshtml" />
+    <Content Include="Views\DevOrganization\Develope.cshtml" />
+    <Content Include="Views\DevOrganization\Discard.cshtml" />
+    <Content Include="Views\DevOrganization\Select.cshtml" />
+    <Content Include="Views\Dev\Index.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Flow\Index.cshtml" />
+    <Content Include="Views\Gallery\AdminGaleryes.cshtml" />
+    <Content Include="Views\Gallery\Gallery.cshtml" />
+    <Content Include="Views\Gallery\Galleryes.cshtml" />
+    <Content Include="Views\Gallery\Index.cshtml" />
+    <Content Include="Views\Gallery\Szenyorvideo.cshtml" />
+    <Content Include="Views\Home\Aed\_PartialAedHome.cshtml" />
+    <Content Include="Views\Home\Bm\_PartialBMHome.cshtml" />
+    <Content Include="Views\Home\Default\_PartialDefaultHome.cshtml" />
+    <Content Include="Views\Home\Personal\_PartialPersonalHome.cshtml" />
+    <Content Include="Views\Home\Riska\_PartialRiskaHome.cshtml" />
+    <Content Include="Views\Home\Special\_PartialSpecialHome.cshtml" />
+    <Content Include="Views\Home\AccesDenied.cshtml" />
+    <Content Include="Views\Home\DownloadDocsIndex.cshtml" />
+    <Content Include="Views\Home\DownloadsIndex.cshtml" />
+    <Content Include="Views\Home\FunctionDash.cshtml" />
+    <Content Include="Views\Home\FunctionDashOld.cshtml" />
+    <Content Include="Views\Home\ReportDash.cshtml" />
+    <Content Include="Views\Home\SchedulerDash.cshtml" />
+    <Content Include="Views\Home\SessionExpire.cshtml" />
+    <Content Include="Views\Organization\Organization.cshtml" />
+    <Content Include="Views\Persons\Contract.cshtml" />
+    <Content Include="Views\Persons\Persons.cshtml" />
+    <Content Include="Views\Persons\Propertyes.cshtml" />
+    <Content Include="Views\Persons\Select.cshtml" />
+    <Content Include="Views\Persons\Status.cshtml" />
+    <Content Include="Views\Query\Queryes.cshtml" />
+    <Content Include="Views\Shared\basepart\_FlowManPartial.cshtml" />
+    <Content Include="Views\Shared\basepart\_Generalpopup.cshtml" />
+    <Content Include="Views\Shared\basepart\_javascript1.cshtml" />
+    <Content Include="Views\Shared\basepart\_javascript2.cshtml" />
+    <Content Include="Views\Shared\basepart\_scripts.cshtml" />
+    <Content Include="Views\Shared\basepart\_styles.cshtml" />
+    <Content Include="Views\Shared\_LayoutAed.cshtml" />
+    <Content Include="Views\Shared\_LayoutBM.cshtml" />
+    <Content Include="Views\Shared\_LayoutDefault.cshtml" />
+    <Content Include="Views\Shared\_LayoutPersonal.cshtml" />
+    <Content Include="Views\Shared\_LayoutRiska.cshtml" />
+    <Content Include="Views\Shared\_LayoutSpecial.cshtml" />
+    <Content Include="Views\Xszenyor\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\Files\Ftp\BM\Test\" />
+    <Folder Include="App_Data\Files\Ftp\Riska\" />
+    <Folder Include="App_Data\Files\Ftp\Special\" />
+    <Folder Include="Gallery\Black\G2\th\" />
+    <Folder Include="Gallery\Black\Maci\th\" />
+    <Folder Include="Gallery\Blue\" />
+    <Folder Include="Gallery\Video\Test\th\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>8292</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:8292/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
