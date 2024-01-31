@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace AedWeb
+namespace Xapp
 {
     public class RouteConfig
     {
@@ -18,6 +18,18 @@ namespace AedWeb
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "DownloadsIndex",
+                url: "Home/DownloadsIndex/{*path}",
+                defaults: new
+                {
+                    controller = "Home",
+                    action = "DownloadsIndex",
+                    path = UrlParameter.Optional
+                }
+            );
+
         }
     }
 }

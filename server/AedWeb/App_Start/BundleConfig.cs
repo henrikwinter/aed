@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace AedWeb
+namespace Xapp
 {
     public class BundleConfig
     {

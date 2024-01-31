@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using AedWeb.Models;
+using Xapp.Models;
 
-namespace AedWeb.Controllers
+namespace Xapp.Controllers
 {
     [Authorize]
     public class ManageController : Controller
@@ -195,7 +195,9 @@ namespace AedWeb.Controllers
         }
 
         //
-        // GET: /Manage/RemovePhoneNumber
+        // POST: /Manage/RemovePhoneNumber
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemovePhoneNumber()
         {
             var result = await UserManager.SetPhoneNumberAsync(User.Identity.GetUserId(), null);

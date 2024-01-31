@@ -1,22 +1,37 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
-{
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-    @Html.AntiForgeryToken()
+@using Dextra.Helpers
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+<ul class="nav navbar-nav navbar-right" >
+
+
+    @if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            @Html.AntiForgeryToken()
+            <li class="nav-item">
+                <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link"><i class="glyphicon glyphicon-globe"></i>&nbsp;@Html.Lang("Logoff", "Layout")
+                    @if (User.Identity.GetUserName().StartsWith("SimpleUser"))
+                    {
+                         @ViewBag.SimpleUserName
+                    }
+                    else
+                    {
+                        @User.Identity.GetUserName()
+                    }
+                
+                 </a>
+            </li>
+        }
     }
-}
-else
-{
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}
+    else
+    {
+            <li class="nav-item"><a href="@Url.Action("Login", "Account")" class="nav-link"><i class="glyphicon glyphicon-globe"></i>&nbsp;@Html.Lang("Login", "Layout")</a></li>
+        
+    }
+
+    <li class="nav-item"><a href="@Url.Action("ChangeLang", "Home",new { lang =@"en"  })" class="nav-link"><img id="langimg_en" src="~/Content/icons/lang_eng.png" style="width:15px;" /></a></li>
+    <li class="nav-item"><a href="@Url.Action("ChangeLang", "Home",new { lang =@"hu"  })" class="nav-link"><img id="langimg_hu" src="~/Content/icons/lang_hu.png" style="width:15px;" /></a></li>
+    <li class="nav-item"><a href="@Url.Action("ChangeLang", "Home",new { lang =@"oth"  })" class="nav-link"><img id="langimg_de" src="~/Content/icons/lang_de.png" style="width:15px;" /></a></li>
+
+</ul>

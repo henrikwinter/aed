@@ -1,41 +1,291 @@
-﻿@model AedWeb.Models.RegisterViewModel
+﻿@using Dextra.Helpers
+@using Xapp.Models
+@model Xapp.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.FormId = "Fid_AccountRegister";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
 }
-
-<h2>@ViewBag.Title.</h2>
-
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@helper L(string title)
 {
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
+    @Html.Lang(title, (string)ViewBag.FormId);
 }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+@section scripts {
+    @Html.ServerSideInclude("~/Views/Account/Register.js")
+    LangDictionary = $.extend(LangDictionary, @Html.GetLangdictionaryToClient("Fid_AccountLogin"));
 }
+
+<style>
+    .register {
+        background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+        background-color: aqua;
+        margin-top: 3%;
+        padding: 3%;
+    }
+
+    .register-left {
+        text-align: center;
+        color: #fff;
+        margin-top: 4%;
+    }
+
+        .register-left input {
+            border: none;
+            border-radius: 1.5rem;
+            padding: 2%;
+            width: 60%;
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #383d41;
+            margin-top: 30%;
+            margin-bottom: 3%;
+            cursor: pointer;
+        }
+
+    .register-right {
+        background: #f8f9fa;
+        border-top-left-radius: 10% 50%;
+        border-bottom-left-radius: 10% 50%;
+    }
+
+    .register-left img {
+        margin-top: 15%;
+        margin-bottom: 5%;
+        width: 45%;
+        -webkit-animation: mover 2s infinite alternate;
+        animation: mover 1s infinite alternate;
+    }
+
+    .register-left p {
+        font-weight: lighter;
+        padding: 12%;
+        margin-top: -9%;
+    }
+
+    .register .register-form {
+        padding: 10%;
+        margin-top: 10%;
+    }
+
+    .btnRegister {
+        float: right;
+        margin-top: 10%;
+        border: none;
+        border-radius: 1.5rem;
+        padding: 2%;
+        background: #0062cc;
+        color: #fff;
+        font-weight: 600;
+        width: 50%;
+        cursor: pointer;
+    }
+
+    .register .nav-tabs {
+        margin-top: 3%;
+        border: none;
+        background: #0062cc;
+        border-radius: 1.5rem;
+        width: 38%;
+        float: right;
+    }
+
+        .register .nav-tabs .nav-link {
+            padding: 2%;
+            height: 34px;
+            font-weight: 600;
+            color: #fff;
+            border-top-right-radius: 1.5rem;
+            border-bottom-right-radius: 1.5rem;
+        }
+
+            .register .nav-tabs .nav-link:hover {
+                border: none;
+            }
+
+            .register .nav-tabs .nav-link.active {
+                width: 100px;
+                color: #0062cc;
+                border: 2px solid #0062cc;
+                border-top-left-radius: 1.5rem;
+                border-bottom-left-radius: 1.5rem;
+            }
+
+    .register-heading {
+        text-align: center;
+        margin-top: 8%;
+        margin-bottom: -15%;
+        color: #495057;
+    }
+</style>
+
+<div id="divreglayer" class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="~/Content/images/img_avatar1.png" alt="" />
+            <h3>@L("Welcome")</h3>
+            @if (ViewBag.RegErrMsg != null)
+            {
+                <div id="listErrors">
+                    <ul class="list-group" style="font-size:0.75em;color:red;text-align:left;">
+                        @for (int i = 0; i <= ViewBag.RegErrMsg.Length - 1; i++)
+                        {
+                            <li class="list-group-item">@ViewBag.RegErrMsg[i]</li>
+                        }
+                    </ul>
+                </div>
+                <div id="ContributionTxt" style="display:none;">
+                    <span>@L("Contribution")</span>
+                    <div class="d-flex p-1">
+                        <div class="p-1"><input id="chkbContribution" type="checkbox" class="" value="" style="background-color:transparent;" /></div>
+                        <div class="p-1">@L("Agree")</div>
+
+                    </div>
+                    <div class="d-flex p-1">
+                        <div class="p-1"><span id="ContributionErrortxt" style="color:red;display:none">@L("AgreeError")</span></div>
+                    </div>
+
+                </div>
+                
+            }
+            else
+            {
+                @L("Contribution")
+          
+                    <table>
+                        <tr>
+                            <td>@L("Agree")</td>
+                            <td>
+                            <input id="chkbContribution" type="checkbox" class="" value="" style="width:60px;height:10px;" /> 
+                            </td>
+                        </tr>
+                    </table>
+          
+                <div class="d-flex p-1">
+                    <div class="p-1"><span id="ContributionErrortxt" style="color:red;display:none">@L("AgreeError")</span></div>
+                </div>
+            }
+
+            
+            
+        </div>
+        <div class="col-md-9 register-right">
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">@L("Employee")</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">@L("Guest")</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="person-tab" data-toggle="tab" href="#person" role="tab" aria-controls="person" aria-selected="false">@L("Person")</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <h3 class="register-heading">@L("ApplyAsEmployee")</h3>
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "", role = "form", id = "frmEmploy" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" id="formselectore" name="formselectore" value="@Model.formselectore" />
+                        <div class="row register-form" style="min-height:440px;">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="@L("FirstName")" value="" id="FirstName" name="FirstName" tabindex="1" />
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = Html.Lang("YourEmail", "Fid_AccountRegister"), tabindex = "3" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Html.Lang("Password", "Fid_AccountRegister"), tabindex = "5" })
+                                </div>
+
+                                <div class="form-group">
+                                    <select class="form-control" id="Question" name="Question" tabindex="7">
+                                        <option class="hidden" selected disabled>@L("SelectFunction")</option>
+                                        <option>@L("App1")</option>
+                                        <option>@L("App2")</option>
+                                        <option>@L("App3")</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="@L("LastName")" value="" id="LastName" name="LastName" tabindex="2" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text"  class="form-control" placeholder="@L("YourPhone")" value="" id="Phonenum" name="Phonenum" tabindex="4" />
+                                </div>
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = Html.Lang("ConfirmPassword", "Fid_AccountRegister"), tabindex = "6" })
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="@L("EnterYourCompany")" value="" id="Answer" name="Answer" tabindex="8" />
+                                </div>
+                                <input type="button" id="btnSendEmploy" class="btnRegister" value="@L("Register")" />
+                            </div>
+                        </div>
+                    }
+                    <div style="color:#808080;text-align:center;padding-left:50px;font-style:italic;">@L("ReginfoEmploy")</div>
+                </div>
+                <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <h3 class="register-heading">@L("ApplyAsGuest")</h3>
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "", role = "form", id = "frmGuest" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" id="formselectorg" name="formselectorg" value="@Model.formselectorg" />
+                        <div class="row register-form" style="min-height:440px;">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="@L("NickName")" value="@Model.NickName" id="NickName" name="NickName" tabindex="1" />
+                                </div>
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.Password_g, new { @class = "form-control", placeholder = Html.Lang("Password", "Fid_AccountRegister"), tabindex = "3" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.Email_g, new { @class = "form-control", placeholder = Html.Lang("YourEmail", "Fid_AccountRegister"), tabindex = "2" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.ConfirmPassword_g, new { @class = "form-control", placeholder = Html.Lang("ConfirmPassword", "Fid_AccountRegister"), tabindex = "4" })
+                                </div>
+                                <input type="button" id="btnSendGuest" class="btnRegister" value="@L("Register")" tabindex="5" />
+                            </div>
+                        </div>
+                    }
+                    <div style="color:#808080;text-align:center;padding-left:50px;font-style:italic;">@L("ReginfoGuest")</div>
+                </div>
+                <div class="tab-pane fade show" id="person" role="tabpanel" aria-labelledby="person-tab">
+                    <h3 class="register-heading">@L("ApplyAsPerson")</h3>
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "", role = "form", id = "frmPerson" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" id="formselectorp" name="formselectorp" value="@Model.formselectorp" />
+                        <div class="row register-form" style="min-height:440px;">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="@L("PersonName")" value="@Model.PersonName" id="PersonName" name="PersonName" tabindex="1" />
+                                </div>
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.Password_p, new { @class = "form-control", placeholder = Html.Lang("Password", "Fid_AccountRegister"), tabindex = "3" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.Email_p, new { @class = "form-control", placeholder = Html.Lang("YourEmail", "Fid_AccountRegister"), tabindex = "2" })
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.ConfirmPassword_p, new { @class = "form-control", placeholder = Html.Lang("ConfirmPassword", "Fid_AccountRegister"), tabindex = "4" })
+                                </div>
+                                <input type="button" id="btnSendPerson" class="btnRegister" value="@L("Register")" tabindex="5" />
+                            </div>
+                        </div>
+                    }
+                    <div style="color:#808080;text-align:center;padding-left:50px;font-style:italic;">@L("ReginfoPerson")</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

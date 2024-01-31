@@ -1,10 +1,53 @@
-﻿@{
-    ViewBag.Title = "Confirm Email";
+﻿@using Dextra.Helpers
+@{
+    ViewBag.FormId = "Fid_AccountConfirmEmail";
+    ViewBag.Title = ViewBag.FormId;
+    Layout = "~/Views/Shared/_Layout" + ViewBag.Layout + ".cshtml";
+
+}
+@helper L(string title)
+{
+    @Html.Lang(title, (string)ViewBag.FormId);
 }
 
-<h2>@ViewBag.Title.</h2>
-<div>
-    <p>
-        Thank you for confirming your email. Please @Html.ActionLink("Click here to Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
-    </p>
+
+@section scripts {
+
+    @Html.ServerSideInclude("~/Views/Account/ConfirmEmail.js")
+    LangDictionary = $.extend(LangDictionary, @Html.GetLangdictionaryToClient("Fid_AccountLogin"));
+}
+
+
+<style>
+
+</style>
+
+
+<div class="container register">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            @if(ViewBag.Message == "ConfirmEmail")
+            {
+                <div class="jumbotron bg-dark text-white"  style="margin-top:50px;">
+                    <h1>@L("ConfirmRegisterEmail")</h1>
+                    <p>@L("ConfirmregisterEmailTxt")</p>
+                    <a href="@Url.Action("Login", "Account",new {   })" class="btn btn-info" role="button">@L("Login")</a>
+                </div>
+            }
+            else
+            {
+                <div class="jumbotron bg-dark text-white"  style="margin-top:50px;">
+                    <h1>@L("Badrequest")</h1>
+                    <p>@L("BadrequestTxt")</p>
+                    <a href="@Url.Action("Index", "Home",new {   })" class="btn btn-info" role="button">@L("Home")</a>
+                </div>
+            }
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
 </div>
+
+
+

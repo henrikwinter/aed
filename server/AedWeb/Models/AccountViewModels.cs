@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace AedWeb.Models
+namespace Xapp.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
@@ -62,12 +62,23 @@ namespace AedWeb.Models
         public bool RememberMe { get; set; }
     }
 
+    public class Gender
+    {
+        public string ID { get; set; }
+        public string Type { get; set; }
+    }
     public class RegisterViewModel
     {
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email_g { get; set; }
+
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -79,6 +90,62 @@ namespace AedWeb.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password_g { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword_g { get; set; }
+
+
+
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password_p { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword_p { get; set; }
+
+
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email_p { get; set; }
+
+
+        public RegisterViewModel()
+        {
+            NickName = "";
+            formselectore = "";
+            formselectorg = "";
+
+            
+        }
+        public string NickName { get; set; }
+
+        public string PersonName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string gender { get; set; }
+        public string Question { get; set; }
+        public string Answer { get; set; }
+        public string Phonenum { get; set; }
+        
+        public string formselectore { get; set; }
+        public string formselectorg { get; set; }
+        public string formselectorp { get; set; }
+
     }
 
     public class ResetPasswordViewModel
